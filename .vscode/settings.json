@@ -3,5 +3,6 @@
     "[blade]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "prettier.documentSelectors": ["**/*.blade.php"]
+    "prettier.documentSelectors": ["**/*.blade.php"],
+    "cSpell.words": ["Nwsl", "Ulids"]
 }
