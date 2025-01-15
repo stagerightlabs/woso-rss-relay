@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
@@ -12,7 +13,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Configure Eloquent strictness
+        if ($this->app->environment('production')) {
+            Model::preventSilentlyDiscardingAttributes();
+            Model::preventLazyLoading();
+        }
     }
 
     /**
@@ -32,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
                     PRAGMA foreign_keys = true;
                     PRAGMA busy_timeout = 5000;
                     PRAGMA temp_store = memory;
-                    SQL
+                    SQL,
                 );
         }
     }
