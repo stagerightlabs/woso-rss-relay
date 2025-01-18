@@ -46,4 +46,15 @@ class NwslTest extends TestCase
 
         $this->assertStringContainsString("<p>Stay up-to-date with the latest NWSL offseason moves.</p>\n", $article->content);
     }
+
+    #[Test]
+    public function it_can_find_the_largest_content_section()
+    {
+        Http::fake(['*' => Http::response($this->stub('nwsl-multipart-article.json'))]);
+        $source = new Nwsl();
+        $response = $source->content('example.com');
+        $article = $source->article($response);
+
+        $this->assertStringContainsString("<p>The award, first given in 1998,", $article->content);
+    }
 }

@@ -1,0 +1,63 @@
+{
+    "type": "story",
+    "_translationId": "6dcdd878-b9da-4973-9973-46c739fdb16a",
+    "_entityId": "b8c29402-22fb-40dc-8a91-67eafa3b8d27",
+    "selfUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/stories/ally-sentnor-wins-2024-u-s-soccer-young-female-player-of-the-year",
+    "slug": "ally-sentnor-wins-2024-u-s-soccer-young-female-player-of-the-year",
+    "title": "Ally Sentnor Wins 2024 U.S. Soccer Young Female Player of the Year",
+    "tags": [],
+    "relations": [],
+    "references": {},
+    "fields": { "author": "NWSL Editor" },
+    "createdBy": "Stuart Drew",
+    "lastUpdatedBy": "Stuart Drew",
+    "lastUpdatedDate": "2025-01-18T01:01:52.509Z",
+    "contentDate": "2025-01-18T01:00:42.206Z",
+    "featured": 0,
+    "summary": "Utah Royals FC forward Ally Sentnor has been voted the 2024 U.S. Soccer Young Female Player of the Year.",
+    "parts": [
+        {
+            "type": "markdown",
+            "content": "Utah Royals FC forward Ally Sentnor has been voted the 2024 U.S. Soccer Young Female Player of the Year.",
+            "contextualFields": {}
+        },
+        {
+            "type": "external",
+            "externalType": "oembed",
+            "inputUrl": "https://twitter.com/NWSL/status/1880360854857871658",
+            "content": {
+                "url": "https://twitter.com/NWSL/status/1880360854857871658",
+                "author_name": "National Women’s Soccer League",
+                "author_url": "https://twitter.com/NWSL",
+                "html": "<blockquote class=\"twitter-tweet\"><p lang=\"en\" dir=\"ltr\">Youngest in charge 💪👑<br><br>Ally Sentnor has been named the 2024 Young Female Player of the Year by <a href=\"https://twitter.com/ussoccer?ref_src=twsrc%5Etfw\">@ussoccer</a>. <a href=\"https://t.co/p62FcIzXuU\">pic.twitter.com/p62FcIzXuU</a></p>&mdash; National Women’s Soccer League (@NWSL) <a href=\"https://twitter.com/NWSL/status/1880360854857871658?ref_src=twsrc%5Etfw\">January 17, 2025</a></blockquote>\n<script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>\n\n",
+                "width": 550,
+                "type": "rich",
+                "cache_age": "3153600000",
+                "provider_name": "Twitter",
+                "provider_url": "https://twitter.com",
+                "version": "1.0"
+            },
+            "contextualFields": {}
+        },
+        {
+            "type": "markdown",
+            "content": "The award, first given in 1998, recognizes the most promising young talent in the United States, and since 2003, every winner has gone on to play in the NWSL. Sentnor, the No. 1 overall pick in the 2024 NWSL Draft, shined in her rookie season with the Utah Royals, demonstrating why she is one of the nation’s top prospects.\n\nIn her first professional season, Sentnor started all 21 matches for Utah, logging 1,866 minutes, scoring three goals, and adding four assists. Her performances earned her NWSL Rookie of the Month and Player of the Month honors in July, making her just the second player in league history to win both in the same month after Messiah Bright. In the NWSL x Liga MX Femenil Summer Cup, Sentnor scored in matches against Tijuana and Portland. Sentnor’s ability to perform consistently at a high level made her an integral piece of the Royals’ re-established franchise.\n\nInternationally, at the 2024 FIFA U-20 Women’s World Cup, Sentnor captained the USA to a third-place finish, the program’s best result since 2012. She scored three goals during the tournament, including a pivotal performance in the dramatic quarterfinal comeback against Germany and earned the Bronze Ball.\n\nSentnor debuted for the senior U.S. women’s national team in November, appearing in two matches during the team’s European tour. She earned her first cap in front of over 78,000 fans at Wembley Stadium in a 0-0 draw with England, followed by her second cap in a 2-1 win over the Netherlands. Sentnor has transitioned seamlessly from youth international success to the senior national team this year and was most recently called up to the USWNT January Futures camp.\n\nThe Young Female Player of the Year honors is a testament to her dedication and talent, as well as the growing legacy of the NWSL in nurturing world-class players.",
+            "contextualFields": {}
+        },
+        {
+            "type": "markdown",
+            "content": "#### **Previous U.S. Soccer Young Female Player of the Year Winners:**\n\n1998: Cindy Parlow\n\n1999: Lorrie Fair\n\n2000: Aly Wagner\n\n2001: Aleisha Cramer\n\n2002: Lindsay Tarpley\n\n2003: Cat Reddick\n\n2004: Heather O'Reilly\n\n2005: Lori Chalupny\n\n2006: Danesha Adams\n\n2007: Lauren Cheney\n\n2008: Kristie Mewis\n\n2009: Tobin Heath\n\n2010: Bianca Henninger\n\n2011: Sydney Leroux\n\n2012: Julie Johnston\n\n2013: Lindsey Horan\n\n2014: Morgan Brian\n\n2015: Mallory Pugh\n\n2016: Ashley Sanchez\n\n2017: Sophia Smith\n\n2018: Tierna Davidson\n\n2019: Brianna Pinto\n\n2020: Naomi Girma\n\n2021: Trinity Rodman\n\n2022: Jaedyn Shaw\n\n2023: Olivia Moultrie\n\n2024: Ally Sentnor",
+            "contextualFields": {}
+        }
+    ],
+    "thumbnail": {
+        "title": " May 8, 2024: Ally Sentnor (UTA) ",
+        "templateUrl": "https://images.nwslsoccer.com/image/private/{formatInstructions}/prd/fqjtk1xeibvtxcmwafff",
+        "thumbnailUrl": "https://images.nwslsoccer.com/image/private/t_ratio1_1-size20/prd/fqjtk1xeibvtxcmwafff",
+        "format": "jpg",
+        "overriddenFormats": {},
+        "slug": "usatsi-23224838",
+        "selfUrl": "https://dapi.nwslsoccer.com/v2/content/en-us/photos/usatsi-23224838"
+    },
+    "_listAvailability": 0
+}

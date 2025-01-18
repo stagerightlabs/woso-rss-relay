@@ -46,6 +46,9 @@ final class Nwsl implements Source
         });
     }
 
+    /**
+     * Create an article from rss entry content.
+     */
     public function article(Response $response): Article
     {
         $content = $response->json();
@@ -57,7 +60,13 @@ final class Nwsl implements Source
         $article->link = 'https://www.nwslsoccer.com/news/' . Arr::get($content, 'slug');
         $article->image = $this->image(Arr::get($content, 'thumbnail.thumbnailUrl'));
         $article->summary = Arr::get($content, 'summary');
-        $article->content = Str::markdown(Arr::get($content, 'parts.0.content'));
+        $content = (new Collection(Arr::get($content, 'parts')))
+            ->filter(fn($part) => $part['type'] == 'markdown')
+            ->sort(fn($a, $b) => strlen($b['content']) <=> strlen($a['content']))
+            ->first();
+        $article->content = $content ? Str::markdown($content['content']) : null;
+        $publishedAt = Arr::get($content, 'contentDate');
+        $article->published_at = $publishedAt ? new \DateTimeImmutable($publishedAt) : null;
 
         return $article;
     }
