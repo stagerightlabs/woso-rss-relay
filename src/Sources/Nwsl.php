@@ -51,21 +51,21 @@ final class Nwsl implements Source
      */
     public function article(Response $response): Article
     {
-        $content = $response->json();
+        $json = $response->json();
 
         $article = new Article();
         $article->feed = $this->feed();
-        $article->key = Arr::get($content, '_entityId');
-        $article->title = Arr::get($content, 'title');
-        $article->link = 'https://www.nwslsoccer.com/news/' . Arr::get($content, 'slug');
-        $article->image = $this->image(Arr::get($content, 'thumbnail.thumbnailUrl'));
-        $article->summary = Arr::get($content, 'summary');
-        $content = (new Collection(Arr::get($content, 'parts')))
+        $article->key = Arr::get($json, '_entityId');
+        $article->title = Arr::get($json, 'title');
+        $article->link = 'https://www.nwslsoccer.com/news/' . Arr::get($json, 'slug');
+        $article->image = $this->image(Arr::get($json, 'thumbnail.thumbnailUrl'));
+        $article->summary = Arr::get($json, 'summary');
+        $content = (new Collection(Arr::get($json, 'parts')))
             ->filter(fn($part) => $part['type'] == 'markdown')
             ->sort(fn($a, $b) => strlen($b['content']) <=> strlen($a['content']))
             ->first();
         $article->content = $content ? Str::markdown($content['content']) : null;
-        $publishedAt = Arr::get($content, 'contentDate');
+        $publishedAt = Arr::get($json, 'contentDate');
         $article->published_at = $publishedAt ? new \DateTimeImmutable($publishedAt) : null;
 
         return $article;

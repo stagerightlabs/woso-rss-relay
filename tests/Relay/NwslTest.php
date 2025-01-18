@@ -43,6 +43,7 @@ class NwslTest extends TestCase
         $this->assertEquals('https://www.nwslsoccer.com/news/2024-25-nwsl-offseason-transaction-tracker', $article->link);
         $this->assertEquals('https://www.nwslsoccer.com/_next/image?url=https%3A%2F%2Fimages.nwslsoccer.com%2Fimage%2Fprivate%2Ft_ratio21_9-size60%2Fprd%2Fjictgf8szeefvgqmos9e&w=1920&q=75', $article->image);
         $this->assertEquals($summary, $article->summary);
+        $this->assertNotNull($article->published_at);
 
         $this->assertStringContainsString("<p>Stay up-to-date with the latest NWSL offseason moves.</p>\n", $article->content);
     }
