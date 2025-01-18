@@ -1,6 +1,8 @@
-# Relay
+# WoSo RSS Relay
 
-This is a feed aggregator for Women's Soccer web content. There are a surprising number of websites in this space that do not offer RSS feeds; the goal of this project is to create those missing feeds and make them available to the public.
+A feed aggregator for Women's Soccer web content.
+
+There are a surprising number of websites in this space that do not offer RSS feeds; the goal of this project is to create those missing feeds and make them available to the public.
 
 ## Roadmap
 
@@ -26,3 +28,7 @@ This is a feed aggregator for Women's Soccer web content. There are a surprising
 - [ ] Utah Royals
 
 More...?
+
+## Content Ownership
+
+The content managed by this project is owned entirely by the third party organizations who originate that content; copyright remains solely with them. Content can be removed at their request.
