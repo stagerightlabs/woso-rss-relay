@@ -36,17 +36,19 @@ final class Website extends Model
     /**
      * The relay RSS url.
      *
-     * @return Attribute
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute<Website, never>
      */
     protected function relay(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->feed ? route('feed', $this->feed) : null
+            get: fn() => $this->feed ? route('feed', $this->feed) : null,
         );
     }
 
     /**
      * The website data.
+     *
+     * @var array<int, array<string, \Relay\Feed::NWSL|string>>
      */
     protected array $rows = [
         [
@@ -54,7 +56,7 @@ final class Website extends Model
             'link' => 'https://www.nwslsoccer.com/',
             'category' => 'news',
             'league' => 'nwsl',
-            'feed' => Feed::NWSL
+            'feed' => Feed::NWSL,
         ],
     ];
 }
