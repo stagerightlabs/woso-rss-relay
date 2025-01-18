@@ -2,6 +2,7 @@
 
 namespace Relay\Sources;
 
+use Carbon\CarbonImmutable;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -67,7 +68,7 @@ final class Nwsl implements Source
             ->first();
         $article->content = $content ? Str::markdown($content['content']) : null;
         $publishedAt = Arr::get($json, 'contentDate');
-        $article->published_at = $publishedAt ? new \DateTimeImmutable($publishedAt) : null;
+        $article->published_at = $publishedAt ? new CarbonImmutable($publishedAt) : null;
 
         return $article;
     }
