@@ -3,8 +3,10 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Relay\Article;
+use Relay\Feed;
 use Relay\Sources\Nwsl;
 use Relay\Sources\Source;
 
@@ -15,7 +17,7 @@ class Gather extends Command
      *
      * @var string
      */
-    protected $signature = 'gather';
+    protected $signature = 'gather {feed?}';
 
     /**
      * The console command description.
@@ -77,12 +79,17 @@ class Gather extends Command
     /**
      * The list of sources to check.
      *
-     * @return array<array-key,class-string<Source>>
+     * @return Collection<string,class-string<Source>>
      */
-    public function sources(): array
+    public function sources(): Collection
     {
-        return [
-            Nwsl::class,
-        ];
+        $feed = $this->argument('feed');
+
+        /** @phpstan-ignore return.type */
+        return collect([
+            Feed::NWSL->value => Nwsl::class,
+        ])->when($feed, function (Collection $collection) use ($feed) {
+            $collection->filter(fn($entry) => $collection[$feed] == $entry);
+        });
     }
 }
