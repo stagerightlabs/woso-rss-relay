@@ -59,6 +59,7 @@ final class Nwsl implements Source
         $article->title = Arr::get($json, 'title');
         $article->link = 'https://www.nwslsoccer.com/news/' . Arr::get($json, 'slug');
         $article->image = $this->image(Arr::get($json, 'thumbnail.thumbnailUrl'));
+        $article->author = Arr::get($json, 'fields.author');
         $article->summary = Arr::get($json, 'summary');
         $content = (new Collection(Arr::get($json, 'parts')))
             ->filter(fn($part) => $part['type'] == 'markdown')

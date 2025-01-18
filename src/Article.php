@@ -15,9 +15,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $image
  * @property string|null $summary
  * @property string|null $content
- * @property \DateTimeImmutable|null $published_at
- * @property \DateTimeImmutable|null $created_at
- * @property \DateTimeImmutable|null $updated_at
+ * @property string|null $author
+ * @property \Carbon\CarbonImmutable|null $published_at
+ * @property \Carbon\CarbonImmutable|null $created_at
+ * @property \Carbon\CarbonImmutable|null $updated_at
  */
 class Article extends Model
 {
@@ -35,6 +36,7 @@ class Article extends Model
     {
         return [
             'feed' => Feed::class,
+            'published_at' => 'immutable_datetime',
         ];
     }
 }

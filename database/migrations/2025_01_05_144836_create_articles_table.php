@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('title')->nullable();
             $table->string('link')->nullable();
             $table->string('image')->nullable();
+            $table->string('author')->nullable();
             $table->string('summary')->nullable();
             $table->text('content')->nullable();
             $table->dateTime('published_at')->nullable();
