@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $image
  * @property string|null $summary
  * @property string|null $content
+ * @property \DateTimeImmutable|null $published_at
  * @property \DateTimeImmutable|null $created_at
  * @property \DateTimeImmutable|null $updated_at
  */

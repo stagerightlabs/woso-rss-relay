@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('image')->nullable();
             $table->string('summary')->nullable();
             $table->text('content')->nullable();
+            $table->dateTime('published_at')->nullable();
             $table->timestamps();
         });
     }
