@@ -79,7 +79,7 @@ final class Atom
                 <name>RSS Relay Service</name>
             </author>
             <generator>RSS Relay Service</generator>
-            <id>{$this->website->relay}</id>
+            <id>urn:relay:{$this->website->feed->value}</id>
 
             {$this->entries()->implode('')}
         </feed>
