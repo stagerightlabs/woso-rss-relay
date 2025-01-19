@@ -20,6 +20,7 @@ final class Catalog
         RacingLouisville::class,
         SanDiegoWave::class,
         SeattleReign::class,
+        WashingtonSpirit::class,
     ];
 
     /**
