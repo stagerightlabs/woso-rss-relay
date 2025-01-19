@@ -3,7 +3,7 @@
 ])
 
 <div
-    {{ $attributes->merge(["class" => "flex flex-col w-32 justify-end"]) }}
+    {{ $attributes->merge(["class" => "flex flex-col w-36 justify-end"]) }}
 >
     @if ($site->logo())
         <div class="flex h-32 justify-center">

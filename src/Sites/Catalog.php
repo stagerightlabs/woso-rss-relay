@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 final class Catalog
 {
     /**
-     * Available sources
+     * Available sources.
      *
      * @var array<int, class-string>
      */
@@ -17,6 +17,7 @@ final class Catalog
         BayFC::class,
         ChicagoStars::class,
         NorthCarolinaCourage::class,
+        RacingLouisville::class,
     ];
 
     /**
