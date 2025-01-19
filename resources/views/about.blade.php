@@ -10,13 +10,13 @@
             them here.
         </p>
         <p class="mb-4">
-            Sites with existing feeds are included in the index as well; my hope
-            is to make this a hub for WoSo RSS feeds in general. If you have
-            ideas for additions let me know! The best way to reach me is ryan at
-            stagerightlabs dot com.
+            Sites with existing feeds are included in the index as well. My hope
+            is to make this a general hub for WoSo RSS feeds. Feel free to send
+            me ideas or requests for new feeds; the best way to reach me is ryan
+            at stagerightlabs dot com.
         </p>
         <p class="mb-4">
-            This is a work in progress; more sites will be added in the future:
+            This is a work in progress. More sites will be added in the future:
         </p>
         <ul class="mb-4 ml-4 list-inside list-disc">
             <li>Gotham NY/NJ</li>
@@ -27,9 +27,13 @@
             <li>Utah Royals</li>
             <li>More...?</li>
         </ul>
-        <p class="mb-8">
+        <p class="mb-4">
             Follow updates here:
             <a href="{{ route("updates") }}">{{ route("updates") }}</a>
+        </p>
+        <p class="mb-8">
+            This is a resource for fans, built by fans. Original copyrights
+            remain in the hands of their respective organizations.
         </p>
         <div class="flex justify-around">
             <a
