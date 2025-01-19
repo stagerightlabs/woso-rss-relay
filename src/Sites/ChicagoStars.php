@@ -4,7 +4,6 @@ namespace Relay\Sites;
 
 final class ChicagoStars implements Site
 {
-
     /**
      * The slug used to identify the site.
      */
@@ -63,6 +62,8 @@ final class ChicagoStars implements Site
 
     /**
      * The RSS feed URL provided by the site.
+     *
+     * @phpstan-ignore return.unusedType
      */
     public function rss(): ?string
     {
@@ -79,6 +80,8 @@ final class ChicagoStars implements Site
 
     /**
      * The YouTube RSS feed URL.
+     *
+     * @phpstan-ignore return.unusedType
      */
     public function youtube(): ?string
     {

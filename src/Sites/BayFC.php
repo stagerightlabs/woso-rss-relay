@@ -62,6 +62,8 @@ final class BayFC implements Site
 
     /**
      * The RSS feed URL provided by the site.
+     *
+     * @phpstan-ignore return.unusedType
      */
     public function rss(): ?string
     {
@@ -78,6 +80,8 @@ final class BayFC implements Site
 
     /**
      * The YouTube RSS feed URL.
+     *
+     * @phpstan-ignore return.unusedType
      */
     public function youtube(): ?string
     {
