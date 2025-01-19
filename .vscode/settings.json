@@ -4,5 +4,15 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "prettier.documentSelectors": ["**/*.blade.php"],
-    "cSpell.words": ["Nwsl", "Ulids", "vite"]
+    "cSpell.words": ["bayfc", "Nwsl", "Ulids", "vite"],
+    // ...
+    "search.exclude": {
+        "**/.coverage": true,
+        "**/.git": true,
+        "**/node_modules": true,
+        "**/vendor": true
+    },
+    "files.exclude": {
+        "**/.coverage": true
+    }
 }
