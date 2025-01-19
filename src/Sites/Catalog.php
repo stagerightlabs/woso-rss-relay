@@ -29,8 +29,17 @@ final class Catalog
             ->map(function ($site) {
                 /** @var Site */
                 return new $site();
-            })
-            ->sort(fn($a, $b) => $a->title() <=> $b->title());
+            });
+    }
+
+    /**
+     * Return a collection of available sites sorted by name.
+     *
+     * @return Collection<array-key,Site>
+     */
+    public static function sorted(): Collection
+    {
+        return self::all()->sort(fn($a, $b) => $a->title() <=> $b->title());
     }
 
     /**
