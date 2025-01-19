@@ -32,3 +32,7 @@ More...?
 ## Content Ownership
 
 The content managed by this project is owned entirely by the third party organizations who originate that content; copyright remains solely with them. Content can be removed at their request.
+
+## Attribution
+
+ Icons provided by [Lucide.dev](https://lucide.dev/)

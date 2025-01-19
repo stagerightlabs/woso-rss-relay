@@ -4,5 +4,5 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "prettier.documentSelectors": ["**/*.blade.php"],
-    "cSpell.words": ["Nwsl", "Ulids"]
+    "cSpell.words": ["Nwsl", "Ulids", "vite"]
 }

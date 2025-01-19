@@ -9,10 +9,11 @@ final class Catalog
     /**
      * Available sources
      *
-     * @var array<string, class-string>
+     * @var array<int, class-string>
      */
     protected static array $sources = [
-        'nwsl' => Nwsl::class,
+        Nwsl::class,
+        AngelCity::class,
     ];
 
     /**
@@ -26,7 +27,8 @@ final class Catalog
             ->map(function ($site) {
                 /** @var Site */
                 return new $site();
-            });
+            })
+            ->sort(fn($a, $b) => $a->title() <=> $b->title());
     }
 
     /**
@@ -34,11 +36,12 @@ final class Catalog
      */
     public function find(string $slug): ?Site
     {
-        if (array_key_exists($slug, self::$sources)) {
-            /** @var Site */
-            return new self::$sources[$slug]();
-        }
-
-        return null;
+        return (new Collection(self::$sources))
+            ->filter(fn($site) => $site::slug() == $slug)
+            ->map(function ($site) {
+                /** @var Site */
+                return new $site();
+            })
+            ->first();
     }
 }
