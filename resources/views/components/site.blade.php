@@ -10,7 +10,7 @@
             <img
                 src="{{ $site->logo() }}"
                 alt="{{ $site->title() }} logo"
-                class="mb-2 w-24 self-center"
+                class="w-20 self-center"
             />
         </div>
     @endif
@@ -23,6 +23,7 @@
                 href="{{ $site->url() }}"
                 target="_blank"
                 class="flex content-center"
+                title="Official Website"
             >
                 <x-icons.globe class="mr-2 h-5 w-5" />
                 Website
@@ -34,6 +35,7 @@
                 href="{{ $site->rss() }}"
                 target="_blank"
                 class="flex content-center"
+                title="Official RSS Feed"
             >
                 <x-icons.rss class="mr-2 h-5 w-5" />
                 RSS
@@ -45,6 +47,7 @@
                 href="{{ $site->relay() }}"
                 target="_blank"
                 class="flex content-center"
+                title="Relay RSS Feed"
             >
                 <x-icons.radar class="mr-2 h-5 w-5" />
                 Relay RSS
@@ -56,6 +59,7 @@
                 href="{{ $site->youtube() }}"
                 target="_blank"
                 class="flex content-center"
+                title="YouTube RSS Feed"
             >
                 <x-icons.youtube class="mr-2 h-5 w-5" />
                 YouTube RSS
