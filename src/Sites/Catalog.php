@@ -19,6 +19,7 @@ final class Catalog
         NorthCarolinaCourage::class,
         RacingLouisville::class,
         SanDiegoWave::class,
+        SeattleReign::class,
     ];
 
     /**
