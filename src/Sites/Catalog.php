@@ -18,6 +18,7 @@ final class Catalog
         ChicagoStars::class,
         NorthCarolinaCourage::class,
         RacingLouisville::class,
+        SanDiegoWave::class,
     ];
 
     /**
