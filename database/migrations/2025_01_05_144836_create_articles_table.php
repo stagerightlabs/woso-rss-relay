@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->string('feed');
+            $table->string('site');
             $table->string('key');
             $table->string('title')->nullable();
             $table->string('link')->nullable();

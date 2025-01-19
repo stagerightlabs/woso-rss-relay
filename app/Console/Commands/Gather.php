@@ -3,21 +3,22 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Http\Client\Factory;
+use Illuminate\Log\LogManager;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Relay\Article;
-use Relay\Feed;
-use Relay\Sources\Nwsl;
-use Relay\Sources\Source;
+use Relay\Sites\Catalog;
+use Relay\Sites\Site;
 
-class Gather extends Command
+final class Gather extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'gather {feed?}';
+    protected $signature = 'gather {site?}';
 
     /**
      * The console command description.
@@ -26,13 +27,18 @@ class Gather extends Command
      */
     protected $description = 'Gather content from registered sources';
 
+    public function __construct(private Factory $http, private LogManager $log)
+    {
+        parent::__construct();
+    }
+
     /**
      * Execute the console command.
      */
     public function handle(): int
     {
-        foreach ($this->sources() as $class) {
-            $this->gather(new $class());
+        foreach ($this->sources() as $site) {
+            $this->gather($site);
         }
 
         return self::SUCCESS;
@@ -41,37 +47,39 @@ class Gather extends Command
     /**
      * Check a news source for new articles.
      */
-    public function gather(Source $source): void
+    public function gather(Site $site): void
     {
+        $parser = $site->parser();
+        if (!$parser) {
+            return;
+        }
+
         // Look at the source index for a list of articles
-        $response = $source->index();
+        $response = $this->http->get($parser->target());
         if (!$response->ok()) {
-            $target = $response->transferStats ?
-                strval($response->transferStats->getRequest()->getUri())
-                : $source->feed()->value;
-            Log::error("Received {$response->getStatusCode()} error when checking '{$target}'");
+            $this->log->error("Received {$response->getStatusCode()} error when checking '{$parser->target()}'");
             return;
         }
 
         // Loop through the articles found and fetch content for new entries
-        foreach ($source->links($response) as $link) {
+        foreach ($parser->entries($response) as $entry) {
             // Does the article exist?
-            if (Article::where('key', $link->key)->where('feed', $source->feed())->exists()) {
+            if (Article::where('key', $entry['key'])->where('site', $site->slug())->exists()) {
                 continue;
             }
 
             // If not, attempt to create a new entry.
-            $response = $source->content($link->url);
+            $response = $this->http->get($entry['url']);
             if (!$response->ok()) {
-                Log::error("Received {$response->getStatusCode()} error when checking '{$link->url}'");
+                Log::error("Received {$response->getStatusCode()} error when checking '{$entry['url']}'");
                 continue;
             }
 
-            $article = $source->article($response);
+            $article = $parser->article($response);
             $article->save();
 
             if ($this->getOutput()->isVerbose()) {
-                $this->info("New Article for {$source->feed()->value}: {$article->title}");
+                $this->info("New Article for {$site->title()}: {$article->title}");
             }
         }
     }
@@ -79,17 +87,16 @@ class Gather extends Command
     /**
      * The list of sources to check.
      *
-     * @return Collection<string,class-string<Source>>
+     * @return Collection<string,Site>
      */
     public function sources(): Collection
     {
-        $feed = $this->argument('feed');
-
-        /** @phpstan-ignore return.type */
-        return collect([
-            Feed::NWSL->value => Nwsl::class,
-        ])->when($feed, function (Collection $collection) use ($feed) {
-            $collection->filter(fn($entry) => $collection[$feed] == $entry);
-        });
+        return Catalog::all()
+            ->filter(fn($site) => !is_null($site->parser()))
+            ->when($this->argument('site'), function (Collection $collection) {
+                return $collection->filter(
+                    fn($site) => $site->slug() == $this->argument('site'),
+                );
+            });
     }
 }

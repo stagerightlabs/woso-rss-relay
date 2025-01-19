@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property string $id
- * @property Feed $feed
+ * @property string $site
  * @property string $key
  * @property string|null $title
  * @property string|null $link
@@ -35,7 +35,6 @@ class Article extends Model
     protected function casts(): array
     {
         return [
-            'feed' => Feed::class,
             'published_at' => 'immutable_datetime',
         ];
     }

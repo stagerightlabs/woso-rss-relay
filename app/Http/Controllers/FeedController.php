@@ -2,24 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Relay\Article;
-use Relay\Atom;
-use Relay\Feed;
+use Relay\Sites\Catalog;
+use Relay\Transform\Atom;
 
 class FeedController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Feed $feed): Response
+    public function __invoke(string $site, Catalog $catalog): Response
     {
-        $articles = Article::where('feed', $feed)
+        $site = $catalog->find(strtolower($site));
+        if (!$site) {
+            abort(404);
+        }
+
+        $articles = Article::where('site', $site->slug())
             ->orderBy('published_at')
             ->get();
 
-        return response((new Atom($feed, $articles)), 200, [
+        return response((new Atom($site, $articles)), 200, [
             'Content-Type' => 'text/xml',
         ]);
     }

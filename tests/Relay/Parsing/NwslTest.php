@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Relay;
+namespace Tests\Relay\Parsing;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use PHPUnit\Framework\Attributes\Test;
 use Relay\Article;
-use Relay\Feed;
-use Relay\Sources\Nwsl;
+use Relay\Parsing\Nwsl;
+use Relay\Sites\Nwsl as NwslSite;
 use Tests\TestCase;
 
 class NwslTest extends TestCase
@@ -18,13 +18,13 @@ class NwslTest extends TestCase
     public function it_can_parse_the_nwsl_index()
     {
         Http::fake(['*' => Http::response($this->stub('nwsl.json'))]);
-        $source = new Nwsl();
-        $response = $source->index();
-        $links = $source->links($response);
+        $parser = new Nwsl();
+        $response = Http::get($parser->target());
+        $entries = $parser->entries($response);
 
-        $this->assertCount(16, $links);
-        $this->assertEquals('https://dapi.nwslsoccer.com/v2/content/en-us/stories/2024-25-nwsl-offseason-transaction-tracker', $links->first()->url);
-        $this->assertEquals('57a350e9-eafe-4eb9-b5fb-cb71b4997a74', $links->first()->key);
+        $this->assertCount(16, $entries);
+        $this->assertEquals('https://dapi.nwslsoccer.com/v2/content/en-us/stories/2024-25-nwsl-offseason-transaction-tracker', $entries->first()['url']);
+        $this->assertEquals('57a350e9-eafe-4eb9-b5fb-cb71b4997a74', $entries->first()['key']);
     }
 
     #[Test]
@@ -32,12 +32,12 @@ class NwslTest extends TestCase
     {
         Http::fake(['*' => Http::response($this->stub('nwsl-article.json'))]);
         $source = new Nwsl();
-        $response = $source->content('example.com');
+        $response = Http::get('example.com');
         $article = $source->article($response);
         $summary = "Stay up-to-date with the latest NWSL offseason moves.\nFor more information on free agency:\nFree Agency Hub\nFree Agency Explained\nAll updates since the end of the regular season. Last updated January 9, 2025.";
 
         $this->assertInstanceOf(Article::class, $article);
-        $this->assertEquals(Feed::NWSL, $article->feed);
+        $this->assertEquals(NwslSite::slug(), $article->site);
         $this->assertEquals('57a350e9-eafe-4eb9-b5fb-cb71b4997a74', $article->key);
         $this->assertEquals('2024-25 NWSL Offseason Transaction Tracker', $article->title);
         $this->assertEquals('https://www.nwslsoccer.com/news/2024-25-nwsl-offseason-transaction-tracker', $article->link);
@@ -54,7 +54,7 @@ class NwslTest extends TestCase
     {
         Http::fake(['*' => Http::response($this->stub('nwsl-multipart-article.json'))]);
         $source = new Nwsl();
-        $response = $source->content('example.com');
+        $response = Http::get('example.com');
         $article = $source->article($response);
 
         $this->assertStringContainsString("<p>The award, first given in 1998,", $article->content);

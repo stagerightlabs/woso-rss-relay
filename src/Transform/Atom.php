@@ -1,21 +1,17 @@
 <?php
 
-namespace Relay;
+namespace Relay\Transform;
 
 use Illuminate\Support\Collection;
+use Relay\Article;
+use Relay\Sites\Site;
 
 final class Atom
 {
-    private Website $website;
-
     /**
-     * @param Feed $feed
      * @param Collection<int,\Relay\Article> $articles
      */
-    public function __construct(Feed $feed, private Collection $articles)
-    {
-        $this->website = Website::where('feed', $feed)->firstOrFail();
-    }
+    public function __construct(private Site $site, private Collection $articles) {}
 
     /**
      * The most recent publication date as an atom datetime string.
@@ -35,8 +31,8 @@ final class Atom
         return $this->articles->map(function (Article $article) {
             $entry = (new Collection([
                 "<title><![CDATA[{$article->title}]]></title>",
-                "<link href=\"{$article->link}\"/>",
-                "<id>urn:relay:{$article->key}</id>",
+                "<link href=\"{$article->link}\" />",
+                "<id>urn:relay:{$this->site->slug()}:{$article->key}</id>",
                 "<summary><![CDATA[{$article->summary}]]></summary>",
                 "<content><![CDATA[{$article->content}]]></content>",
             ]));
@@ -58,7 +54,7 @@ final class Atom
                 $entry->add("<author><name>{$article->author}</name></author>");
             }
 
-            return "<entry>{$entry->implode('')}</entry>";
+            return "<entry>{$entry->sort()->implode('')}</entry>";
         });
     }
 
@@ -70,16 +66,16 @@ final class Atom
         return <<<XML
         <?xml version="1.0" encoding="utf-8"?>
         <feed xmlns="http://www.w3.org/2005/Atom">
-            <title>{$this->website->name}</title>
-            <link rel="self" href="{$this->website->relay}"/>
-            <link rel="alternate" href="{$this->website->link}"/>
+            <title>{$this->site->title()}</title>
+            <link rel="self" href="{$this->site->relay()}"/>
+            <link rel="alternate" href="{$this->site->relay()}"/>
             <updated>{$this->timestamp()}</updated>
             <author>
-                <name>{$this->website->name}</name>
+                <name>{$this->site->title()}</name>
                 <name>RSS Relay Service</name>
             </author>
             <generator>RSS Relay Service</generator>
-            <id>urn:relay:{$this->website->feed->value}</id>
+            <id>urn:relay:{$this->site->slug()}</id>
 
             {$this->entries()->implode('')}
         </feed>

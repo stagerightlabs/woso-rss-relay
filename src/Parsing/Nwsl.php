@@ -1,49 +1,38 @@
 <?php
 
-namespace Relay\Sources;
+namespace Relay\Parsing;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Relay\Article;
-use Relay\Feed;
-use Relay\Link;
+use Relay\Read\Entry;
+use Relay\Sites\Nwsl as NwslSite;
 
-final class Nwsl implements Source
+final class Nwsl implements Parser
 {
-    public const INDEX = 'https://www.nwslsoccer.com/api/dapi/selection/latest-news';
-
     /**
      * Fetch the contents of the source index page.
      */
-    public function index(): Response
+    public function target(): string
     {
-        return Http::get(self::INDEX, ['limit' => 16]);
-    }
-
-    /**
-     * Fetch the details of a single source article.
-     */
-    public function content(string $url): Response
-    {
-        return Http::get($url);
+        return 'https://www.nwslsoccer.com/api/dapi/selection/latest-news';
     }
 
     /**
      * Parse the news content into a list of entries.
      *
-     *  @return Collection<array-key, Link>
+     *  return Collection<array-key, array{'url': string, 'key':string}>
      */
-    public function links(Response $response): Collection
+    public function entries(Response $response): Collection
     {
         return $response->collect('items')->map(function (array $arr) {
-            return new Link(
-                url: $arr['selfUrl'],
-                key: $arr['_entityId'],
-            );
+            return [
+                'url' => strval($arr['selfUrl']),
+                'key' => strval($arr['_entityId']),
+            ];
         });
     }
 
@@ -55,7 +44,7 @@ final class Nwsl implements Source
         $json = $response->json();
 
         $article = new Article();
-        $article->feed = $this->feed();
+        $article->site = NwslSite::slug();
         $article->key = Arr::get($json, '_entityId');
         $article->title = Arr::get($json, 'title');
         $article->link = 'https://www.nwslsoccer.com/news/' . Arr::get($json, 'slug');
@@ -74,19 +63,9 @@ final class Nwsl implements Source
     }
 
     /**
-     * The feed associated with the source.
-     *
-     * @return Feed
-     */
-    public function feed(): Feed
-    {
-        return Feed::NWSL;
-    }
-
-    /**
      * Prepare an image URL for the article.
      */
-    public function image(string $thumbnail): ?string
+    private function image(string $thumbnail): ?string
     {
         $parts = explode("/prd/", $thumbnail);
 
