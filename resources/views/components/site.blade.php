@@ -6,14 +6,16 @@
     {{ $attributes->merge(["class" => "flex flex-col w-32 justify-end"]) }}
 >
     @if ($site->logo())
-        <img
-            src="{{ $site->logo() }}"
-            alt="{{ $site->title() }} logo"
-            class="mb-2 w-16 self-center"
-        />
+        <div class="flex h-32 justify-center">
+            <img
+                src="{{ $site->logo() }}"
+                alt="{{ $site->title() }} logo"
+                class="mb-2 w-24 self-center"
+            />
+        </div>
     @endif
 
-    <p class="mb-4 text-lg">{{ $site->title() }}</p>
+    <p class="mb-4 text-center text-lg">{{ $site->title() }}</p>
 
     <div class="space-y-2 text-sm">
         @if ($site->url())
