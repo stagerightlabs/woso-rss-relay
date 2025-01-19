@@ -10,8 +10,7 @@ There are a surprising number of websites in this space that do not offer RSS fe
 - [x] Source Gathering
 - [x] Feed Generator
 - [x] "gather" command
-- [ ] home page
-- [ ] Telescope
+- [x] home page
 - [ ] Schedule cron jobs
 - [ ] Limit RSS feeds to recent posts only
 - [ ] Clean up old entries automatically
