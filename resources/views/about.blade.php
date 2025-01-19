@@ -18,7 +18,7 @@
         <p class="mb-4">
             This is a work in progress; more sites will be added in the future:
         </p>
-        <ul class="mb-8 ml-4 list-inside list-disc">
+        <ul class="mb-4 ml-4 list-inside list-disc">
             <li>Gotham NY/NJ</li>
             <li>Houston Dash</li>
             <li>Kansas City Current</li>
@@ -27,12 +27,16 @@
             <li>Utah Royals</li>
             <li>More...?</li>
         </ul>
+        <p class="mb-8">
+            Follow updates here:
+            <a href="{{ route("updates") }}">{{ route("updates") }}</a>
+        </p>
         <div class="flex justify-around">
             <a
                 href="{{ route("home") }}"
                 class="flex w-1/3 items-center justify-center rounded bg-slate-200 p-2 text-center hover:bg-slate-300 dark:bg-slate-600 dark:hover:bg-slate-500"
             >
-                <x-icons.rss class="mr-2 h-5 w-5" />
+                <x-icons.arrow-left class="mr-2 h-5 w-5" />
                 Back to RSS Feeds
             </a>
             <a
