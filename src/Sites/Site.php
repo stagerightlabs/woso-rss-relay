@@ -48,4 +48,9 @@ interface Site
      * The relay RSS feed URL.
      */
     public function relay(): ?string;
+
+    /**
+     * The YouTube RSS feed URL.
+     */
+    public function youtube(): ?string;
 }

@@ -19,7 +19,7 @@ final class Nwsl implements Site
      */
     public function logo(): string
     {
-        return '';
+        return asset('images/nwsl-logo.svg');
     }
 
     /**
@@ -82,5 +82,15 @@ final class Nwsl implements Site
     public function relay(): ?string
     {
         return route('feed', $this->slug());
+    }
+
+    /**
+     * The YouTube RSS feed URL.
+     *
+     * @phpstan-ignore return.unusedType
+     */
+    public function youtube(): ?string
+    {
+        return 'https://www.youtube.com/feeds/videos.xml?channel_id=UCL4xu08EDu0ZFZsBJUB0chw';
     }
 }
