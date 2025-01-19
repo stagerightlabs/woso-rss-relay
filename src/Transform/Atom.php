@@ -76,6 +76,8 @@ final class Atom
             </author>
             <generator>RSS Relay Service</generator>
             <id>urn:relay:{$this->site->slug()}</id>
+            <icon>{$this->site->logo()}</icon>
+            <logo>{$this->site->logo()}</logo>
 
             {$this->entries()->implode('')}
         </feed>
