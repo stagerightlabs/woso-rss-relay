@@ -15,6 +15,7 @@ final class Catalog
         Nwsl::class,
         AngelCity::class,
         BayFC::class,
+        ChicagoStars::class,
     ];
 
     /**
