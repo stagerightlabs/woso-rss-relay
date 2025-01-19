@@ -16,6 +16,7 @@ final class Catalog
         AngelCity::class,
         BayFC::class,
         ChicagoStars::class,
+        NorthCarolinaCourage::class,
     ];
 
     /**
@@ -39,7 +40,7 @@ final class Catalog
      */
     public static function sorted(): Collection
     {
-        return self::all()->sort(fn($a, $b) => $a->title() <=> $b->title());
+        return self::all()->sort(fn($a, $b) => strnatcasecmp($a->title(), $b->title()));
     }
 
     /**
