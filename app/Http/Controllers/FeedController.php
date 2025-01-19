@@ -24,7 +24,7 @@ class FeedController extends Controller
             ->get();
 
         return response((new Atom($site, $articles)), 200, [
-            'Content-Type' => 'text/xml',
+            'Content-Type' => 'application/rss+xml',
         ]);
     }
 }
