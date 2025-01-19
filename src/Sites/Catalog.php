@@ -14,6 +14,7 @@ final class Catalog
     protected static array $sources = [
         Nwsl::class,
         AngelCity::class,
+        BayFC::class,
     ];
 
     /**
