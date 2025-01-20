@@ -2,7 +2,13 @@
 
 @section("content")
     <x-card class="max-w-4xl">
-        <h1 class="mb-4 text-xl">WoSo RSS Relay</h1>
+        <header class="flex justify-between">
+            <h1 class="mb-4 text-xl">WoSo RSS Relay</h1>
+            <aside>
+                v{{ \Carbon\Carbon::createFromTimeString(config("relay.release_date"))->format("Ymd") }}
+                &bull; {{ config("relay.release_commit") }}
+            </aside>
+        </header>
         <p class="mb-4">
             There are a surprising number of websites in the Women's Football
             space that do not offer RSS feeds. As a proponent of RSS I thought

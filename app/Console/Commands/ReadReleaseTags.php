@@ -39,6 +39,11 @@ final class ReadReleaseTags extends Command
             return Command::FAILURE;
         }
 
+        $result = $this->writeCommitHash();
+        if ($result == Command::FAILURE) {
+            return Command::FAILURE;
+        }
+
         return Command::SUCCESS;
     }
 
@@ -70,6 +75,39 @@ final class ReadReleaseTags extends Command
         ));
 
         $this->info("Updated release date: $now");
+
+
+        return Command::SUCCESS;
+    }
+
+    /**
+     * Write the current commit hash to the .env file.
+     */
+    protected function writeCommitHash(): int
+    {
+        // Read the contents of the .env file
+        $environment = file_get_contents(self::PATH);
+        if (!$environment) {
+            $this->error('Could not read environment file.');
+            return Command::FAILURE;
+        }
+
+        // Ensure the variable key is present in the .env file
+        if (!strpos($environment, self::RELEASE_COMMIT_TAG)) {
+            $this->error("The release date key is not present in the environment file.");
+
+            return Command::FAILURE;
+        }
+
+        // Write the new asset version value to the .env file
+        $hash = trim(exec('git log --pretty="%h" -n1 HEAD'));
+        file_put_contents(self::PATH, preg_replace(
+            $this->keyReplacementPattern(self::RELEASE_COMMIT_TAG, $_ENV[self::RELEASE_COMMIT_TAG]),
+            self::RELEASE_COMMIT_TAG . '=' . $hash,
+            $environment,
+        ));
+
+        $this->info("Updated commit hash: $hash");
 
 
         return Command::SUCCESS;
