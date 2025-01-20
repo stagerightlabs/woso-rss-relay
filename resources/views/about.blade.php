@@ -1,8 +1,8 @@
 @extends("layout")
 
 @section("content")
-    <x-card class="max-w-4xl">
-        <header class="flex justify-between">
+    <x-card class="mx-2 my-8 md:mx-auto md:max-w-4xl">
+        <header class="mb-4 sm:mb-0 sm:flex sm:justify-between">
             <h1 class="mb-4 text-xl">WoSo RSS Relay</h1>
             <aside>
                 v{{ \Carbon\Carbon::createFromTimeString(config("relay.release_date"))->format("Ymd") }}
@@ -41,21 +41,21 @@
             This is a resource for fans, built by fans. Original copyrights
             remain in the hands of their respective organizations.
         </p>
-        <div class="flex justify-around">
+        <div class="sm:flex sm:justify-around">
             <a
                 href="{{ route("home") }}"
-                class="flex w-1/3 items-center justify-center rounded bg-slate-200 p-2 text-center hover:bg-slate-300 dark:bg-slate-600 dark:hover:bg-slate-500"
+                class="mx-auto mb-4 flex items-center justify-center rounded bg-slate-200 p-2 text-center hover:bg-slate-300 sm:mb-0 sm:w-1/3 dark:bg-slate-600 dark:hover:bg-slate-500"
             >
-                <x-icons.arrow-left class="mr-2 h-5 w-5" />
+                <x-icons.arrow-left class="mr-2 hidden h-5 w-5 sm:block" />
                 Back to RSS Feeds
             </a>
             <a
                 href="https://github.com/stagerightlabs/woso-rss-relay/"
                 target="_blank"
-                class="flex w-1/3 items-center justify-center rounded bg-slate-200 p-2 text-center hover:bg-slate-300 dark:bg-slate-600 dark:hover:bg-slate-500"
+                class="mx-auto flex items-center justify-center rounded bg-slate-200 p-2 text-center hover:bg-slate-300 sm:w-1/3 dark:bg-slate-600 dark:hover:bg-slate-500"
             >
-                <x-icons.github class="mr-2 h-5 w-5" />
-                View Project on GitHub
+                <x-icons.github class="mr-2 hidden h-5 w-5 sm:block" />
+                View on GitHub
             </a>
         </div>
     </x-card>
