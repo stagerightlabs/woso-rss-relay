@@ -11,10 +11,10 @@ There are a surprising number of websites in this space that do not offer RSS fe
 - [x] Feed Generator
 - [x] "gather" command
 - [x] home page
+- [x] Limit RSS feeds to recent posts only
+- [x] Clean up old entries automatically
+- [x] Cache Headers
 - [ ] Schedule cron jobs
-- [ ] Limit RSS feeds to recent posts only
-- [ ] Clean up old entries automatically
-- [ ] Cache Headers
 
 ## Sources
 - [x] NWSL
