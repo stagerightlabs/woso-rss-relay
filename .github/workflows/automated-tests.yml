@@ -5,7 +5,7 @@ on:
     branches: ["dev"]
 
 jobs:
-  laravel-tests:
+  phpunit-and-phpstan:
     runs-on: ubuntu-latest
 
     steps:

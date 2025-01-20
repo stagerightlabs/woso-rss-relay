@@ -6,6 +6,14 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // Remove reliance on the vite manifest file in the test environment
+        $this->withoutVite();
+    }
+
     /**
      * Retrieve the contents of a stub file.
      */
