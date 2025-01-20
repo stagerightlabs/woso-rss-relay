@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Vite;
 use Symfony\Component\HttpFoundation\Response;
 
 class SetSecurityHeaders
@@ -15,6 +16,7 @@ class SetSecurityHeaders
      */
     public function handle(Request $request, Closure $next): Response
     {
+        Vite::useCspNonce();
         $response = $next($request);
 
         // We will only apply these headers in production
@@ -34,7 +36,7 @@ class SetSecurityHeaders
         // https://scotthelme.co.uk/content-security-policy-an-introduction/
         $response->headers->set(
             'Content-Security-Policy',
-            "script-src 'strict-dynamic'; object-src 'none'; base-uri 'none'; require-trusted-types-for 'script';",
+            "script-src 'nonce-" . Vite::cspNonce() . "' 'strict-dynamic'; object-src 'none'; base-uri 'none';",
             $replace = true,
         );
 
