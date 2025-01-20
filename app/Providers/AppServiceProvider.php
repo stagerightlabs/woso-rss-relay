@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Vite::usePrefetchStrategy('aggressive');
+
         // Prepare PRAGMA configurations for the current connection.
         // https://nik.software/sqlite-optimisations-in-laravel/
         foreach (['sqlite'] as $connection) {
