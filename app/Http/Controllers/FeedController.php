@@ -20,7 +20,8 @@ class FeedController extends Controller
         }
 
         $articles = Article::where('site', $site->slug())
-            ->orderBy('published_at')
+            ->latest('published_at')
+            ->take(20)
             ->get();
 
         return response((new Atom($site, $articles)), 200, [
