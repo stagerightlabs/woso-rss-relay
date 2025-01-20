@@ -100,15 +100,16 @@ final class ReadReleaseTags extends Command
         }
 
         // Write the new asset version value to the .env file
-        $hash = trim(exec('git log --pretty="%h" -n1 HEAD'));
-        file_put_contents(self::PATH, preg_replace(
-            $this->keyReplacementPattern(self::RELEASE_COMMIT_TAG, $_ENV[self::RELEASE_COMMIT_TAG]),
-            self::RELEASE_COMMIT_TAG . '=' . $hash,
-            $environment,
-        ));
+        $hash = exec('git log --pretty="%h" -n1 HEAD');
+        if ($hash) {
+            file_put_contents(self::PATH, preg_replace(
+                $this->keyReplacementPattern(self::RELEASE_COMMIT_TAG, $_ENV[self::RELEASE_COMMIT_TAG]),
+                self::RELEASE_COMMIT_TAG . '=' . trim($hash),
+                $environment,
+            ));
+        }
 
         $this->info("Updated commit hash: $hash");
-
 
         return Command::SUCCESS;
     }
