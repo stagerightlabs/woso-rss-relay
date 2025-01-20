@@ -11,10 +11,13 @@
             data-website-id="e932c63c-76d0-4565-910c-5df71f6b327f"
         ></script>
     </head>
-    <body
-        class="flex h-screen items-center justify-center bg-slate-100 align-middle dark:bg-slate-800"
-    >
+    <body class="items-center justify-center bg-slate-100 dark:bg-slate-800">
         @yield("content")
+
+        @env("local")
+            @include("break-points")
+        @endenv
+
         @vite("resources/js/app.js")
     </body>
 </html>
