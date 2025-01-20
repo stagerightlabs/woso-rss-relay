@@ -18,6 +18,10 @@ final class Atom
      */
     private function timestamp(): string
     {
+        if ($this->articles->isEmpty()) {
+            return now()->toAtomString();
+        }
+
         return $this->articles->pluck('published_at')->max()->toAtomString();
     }
 
