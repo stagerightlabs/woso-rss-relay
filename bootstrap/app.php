@@ -20,7 +20,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [CacheControl::class]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->reportable(static function (Throwable $e) {
+            if (app()->bound('honeybadger')) {
+                app('honeybadger')->notify($e, app('request'));
+            }
+        });
     })
     ->withSchedule(function (Schedule $schedule) {
         $schedule->call(Gather::class)
