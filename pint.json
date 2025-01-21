@@ -1,0 +1,10 @@
+{
+    "preset": "per",
+    "rules": {
+        "align_multiline_comment": true,
+        "array_indentation": true,
+        "blank_line_after_namespace": true,
+        "blank_line_after_opening_tag": true,
+        "declare_strict_types": true
+    }
+}
