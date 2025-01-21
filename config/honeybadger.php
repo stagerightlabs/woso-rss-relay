@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Honeybadger\BulkEventDispatcher;
 use Honeybadger\Honeybadger;
 use Honeybadger\HoneybadgerLaravel\HoneybadgerLaravel;
@@ -168,6 +170,6 @@ return [
     ],
 
     'middleware' => [
-        AssignRequestId::class
-    ]
+        AssignRequestId::class,
+    ],
 ];

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Relay\Parsing;
 
 use Carbon\CarbonImmutable;
