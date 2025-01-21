@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Console\Commands\Gather;
 use App\Console\Commands\Prune;
 use App\Http\Middleware\CacheControl;
