@@ -50,11 +50,6 @@ final class Atom
                     ->add("<published>{$article->published_at->toAtomString()}</published>");
             }
 
-            // Logo
-            if ($article->image) {
-                $entry->add("<logo><![CDATA[{$article->image}]]></logo>");
-            }
-
             // Author
             if ($article->author) {
                 $entry->add("<author><name>{$article->author}</name></author>");

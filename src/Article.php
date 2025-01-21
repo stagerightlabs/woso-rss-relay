@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $key
  * @property string|null $title
  * @property string|null $link
- * @property string|null $image
  * @property string|null $summary
  * @property string|null $content
  * @property string|null $author
