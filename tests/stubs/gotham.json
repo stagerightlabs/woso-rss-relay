@@ -1,0 +1,82 @@
+{
+    "result": [
+        {
+            "_id": "a31c4357-4e7b-479a-ad73-685148acaa9a",
+            "publishedAt": "2025-01-22T20:00:44.380Z",
+            "slug": {
+                "current": "/news/gotham-fc-announces-2025-nwsl-season-schedule",
+                "_type": "slug"
+            },
+            "image": null
+        },
+        {
+            "_id": "4cfe6dc4-ea3c-4e67-a669-330c43ede3dd",
+            "publishedAt": "2025-01-22T18:01:53.232Z",
+            "slug": {
+                "current": "/news/nwsl-champion-and-goalkeeper-michelle-betos-announces-retirement-from-professional-soccer",
+                "_type": "slug"
+            },
+            "image": {
+                "asset": {
+                    "url": "https://cdn.sanity.io/images/8mpkhoms/production/d55f37811d6f8b668a85d3a3b010e44dff712738-1320x880.png"
+                }
+            }
+        },
+        {
+            "_id": "af70f43e-e69a-4b9d-9d5d-bc164e2ff771",
+            "publishedAt": "2025-01-17T17:59:27.472Z",
+            "slug": {
+                "current": "/news/gotham-fc-trades-goalkeeper-abby-smith-to-houston-dash",
+                "_type": "slug"
+            },
+            "image": {
+                "asset": {
+                    "url": "https://cdn.sanity.io/images/8mpkhoms/production/8e816a82342b77ea65fa2006bdfeab9284fde2e1-1320x880.png"
+                }
+            }
+        },
+        {
+            "_id": "94b39216-15d5-4cc6-9fda-b7a90a18fd02",
+            "publishedAt": "2025-01-16T17:53:58.059Z",
+            "slug": {
+                "current": "/news/annkatrin-berger-named-to-ea-fc-25-team-of-the-year",
+                "_type": "slug"
+            },
+            "image": null
+        },
+        {
+            "_id": "a4269bef-f070-48d2-b1f5-0540540b2378",
+            "publishedAt": "2025-01-10T15:00:00.000Z",
+            "slug": {
+                "current": "/news/gotham-fc-signs-ucla-goalkeeper-ryan-campbell",
+                "_type": "slug"
+            },
+            "image": {
+                "asset": {
+                    "url": "https://cdn.sanity.io/images/8mpkhoms/production/ada7381fd9746667e551e68f13a63d18a24498e4-1920x1080.png"
+                }
+            }
+        },
+        {
+            "_id": "21c88ffe-15a0-457b-8e1f-7fe9f93022e7",
+            "publishedAt": "2025-01-08T16:59:00.000Z",
+            "slug": {
+                "_type": "slug",
+                "current": "/news/gotham-fc-defender-lilly-reale-called-up-to-2025-u-s-women-s-national-team-futures-camp"
+            },
+            "image": {
+                "asset": {
+                    "url": "https://cdn.sanity.io/images/8mpkhoms/production/2d385f895a913ac6673e4a237fc22dc192aa5e6d-1920x1080.png"
+                }
+            }
+        }
+    ],
+    "syncTags": [
+        "s1:wkAttQ",
+        "s1:tm1ALg",
+        "s1:2MjOHw",
+        "s1:F0XIJg",
+        "s1:LoZg3Q"
+    ],
+    "ms": 7
+}
