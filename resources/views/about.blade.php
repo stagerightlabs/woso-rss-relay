@@ -25,7 +25,6 @@
             This is a work in progress. More sites will be added in the future:
         </p>
         <ul class="mb-4 ml-4 list-inside list-disc">
-            <li>Gotham NY/NJ</li>
             <li>Houston Dash</li>
             <li>Kansas City Current</li>
             <li>Orlando Pride</li>

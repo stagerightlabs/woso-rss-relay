@@ -6,10 +6,10 @@ There are a surprising number of websites in this space that do not offer RSS fe
 
 ## Sources
 - [x] NWSL
+- [x] Gotham FC
 - [ ] U.S. Soccer
 - [ ] Houston Dash
 - [ ] Kansas City Current
-- [ ] Gotham FC
 - [ ] Orlando Pride
 - [ ] Portland Thorns
 - [ ] Utah Royals
