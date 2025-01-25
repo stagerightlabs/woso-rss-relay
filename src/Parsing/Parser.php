@@ -18,14 +18,15 @@ interface Parser
     /**
      * Parse an index response into a list of entries.
      *
-     * @return Collection<array-key, array{'url': string, 'key':string}>
+     * @return Collection<array-key, Entry>
      */
     public function entries(Response $response): Collection;
 
     /**
      * Create an article from a content response
      *
+     * @param array<string, string> $context
      * @return Article
      */
-    public function article(Response $response): Article;
+    public function article(Response $response, array $context = []): Article;
 }

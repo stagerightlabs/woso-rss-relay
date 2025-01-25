@@ -66,18 +66,18 @@ final class Gather extends Command
         // Loop through the articles found and fetch content for new entries
         foreach ($parser->entries($response) as $entry) {
             // Does the article exist?
-            if (Article::where('key', $entry['key'])->where('site', $site->slug())->exists()) {
+            if (Article::where('key', $entry->key)->where('site', $site->slug())->exists()) {
                 continue;
             }
 
             // If not, attempt to create a new entry.
-            $response = $this->http->get($entry['url']);
+            $response = $this->http->get($entry->url);
             if (!$response->ok()) {
-                Log::error("Received {$response->getStatusCode()} error when checking '{$entry['url']}'");
+                Log::error("Received {$response->getStatusCode()} error when checking '{$entry->url}'");
                 continue;
             }
 
-            $article = $parser->article($response);
+            $article = $parser->article($response, $entry->context);
             $article->save();
 
             if ($this->getOutput()->isVerbose()) {

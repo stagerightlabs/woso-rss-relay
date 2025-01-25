@@ -25,8 +25,8 @@ class NwslTest extends TestCase
         $entries = $parser->entries($response);
 
         $this->assertCount(16, $entries);
-        $this->assertEquals('https://dapi.nwslsoccer.com/v2/content/en-us/stories/2024-25-nwsl-offseason-transaction-tracker', $entries->first()['url']);
-        $this->assertEquals('57a350e9-eafe-4eb9-b5fb-cb71b4997a74', $entries->first()['key']);
+        $this->assertEquals('https://dapi.nwslsoccer.com/v2/content/en-us/stories/2024-25-nwsl-offseason-transaction-tracker', $entries->first()->url);
+        $this->assertEquals('57a350e9-eafe-4eb9-b5fb-cb71b4997a74', $entries->first()->key);
     }
 
     #[Test]

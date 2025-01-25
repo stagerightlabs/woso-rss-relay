@@ -9,9 +9,7 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Illuminate\Support\Stringable;
 use Relay\Article;
-use Relay\Read\Entry;
 use Relay\Sites\Nwsl as NwslSite;
 
 final class Nwsl implements Parser
@@ -27,22 +25,19 @@ final class Nwsl implements Parser
     /**
      * Parse the news content into a list of entries.
      *
-     *  return Collection<array-key, array{'url': string, 'key':string}>
+     *  @return Collection<array-key, Entry>
      */
     public function entries(Response $response): Collection
     {
         return $response->collect('items')->map(function (array $arr) {
-            return [
-                'url' => strval($arr['selfUrl']),
-                'key' => strval($arr['_entityId']),
-            ];
+            return new Entry(strval($arr['selfUrl']), strval($arr['_entityId']));
         });
     }
 
     /**
      * Create an article from rss entry content.
      */
-    public function article(Response $response): Article
+    public function article(Response $response, array $context = []): Article
     {
         $json = $response->json();
 
