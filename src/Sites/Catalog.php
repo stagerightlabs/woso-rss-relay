@@ -23,6 +23,7 @@ final class Catalog
         SanDiegoWave::class,
         SeattleReign::class,
         WashingtonSpirit::class,
+        GothamFC::class,
     ];
 
     /**
