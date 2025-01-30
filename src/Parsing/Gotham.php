@@ -76,7 +76,7 @@ final class Gotham implements Parser
         $article->title = Str::of($h1->textContent ?? '')->squish()->toString();
 
         // Key
-        $article->key = md5(strtolower($article->title));
+        $article->key = parse_url($context['url'], PHP_URL_PATH);
 
         // Link
         $article->link = $context['url'];
