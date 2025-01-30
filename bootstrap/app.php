@@ -32,10 +32,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $schedule->call(Gather::class)
             ->dailyAt('04:00')
             ->timezone('America/Los_Angeles')
-            ->environments('prod');
+            ->environments('production');
         $schedule->call(Prune::class)
             ->dailyAt('05:00')
             ->timezone('America/Los_Angeles')
-            ->environments('prod');
+            ->environments('production');
     })
     ->create();
