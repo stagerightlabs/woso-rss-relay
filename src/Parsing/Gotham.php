@@ -89,10 +89,29 @@ final class Gotham implements Parser
         if (!$image) {
             throw new \Exception('Could not find image content');
         }
-        $src = (new Collection(explode("\n", $image->getAttribute('srcset') ?? '')))
-            ->filter(fn($src) => Str::contains($src, '&w=1200', true))
-            ->map(fn($str) => Str::of($str))
+        // Extract the raw image source
+        $raw = (new Collection(explode("\n", $image->getAttribute('srcset') ?? '')))
+            ->filter()
             ->first();
+        if (!$raw) {
+            throw new \Exception('Could not find image content');
+        }
+        // Manipulate the source URL to create a preferable image URL.
+        $image = Str::of($raw)
+            ->trim()
+            ->before(' ')
+            ->after('=')
+            ->pipe('urldecode')
+            ->pipe(function ($url) {
+                $parts = parse_url($url->toString());
+
+                if (!$parts) {
+                    return Str::of('');
+                }
+
+                return Str::of("{$parts['scheme']}://{$parts['host']}{$parts['path']}");
+            })
+            ->append('?w=1200&q=75');
 
         // Content
         $paragraphs = $sections->item(1)?->querySelectorAll('div p');
@@ -108,12 +127,12 @@ final class Gotham implements Parser
                 ->squish()
                 ->toString();
         })->implode("\n");
-        if ($src) {
-            $tag = $src->trim()
-                ->before(' ')
-                ->prepend("<p><img src=\"https://www.gothamfc.com")
+        if ($image->length() > 0) {
+            $tag = $image
+                ->prepend("<p><img src=\"")
                 ->append("\" alt=\"{$article->title}\" /></p>\n\n")
                 ->toString();
+
             $content = $tag . $content;
         }
         $article->content = $content;
