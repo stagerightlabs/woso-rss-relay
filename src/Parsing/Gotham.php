@@ -76,7 +76,14 @@ final class Gotham implements Parser
         $article->title = Str::of($h1->textContent ?? '')->squish()->toString();
 
         // Key
-        $article->key = md5(strtolower($article->title));
+        $path = parse_url($context['url'], PHP_URL_PATH);
+        if (!$path) {
+            throw new \Exception('Could not resolve article path');
+        }
+        $article->key = Str::of($path)->trim('/')->replace('/', '-')->toString();
+        if (empty($article->key)) {
+            throw new \Exception('Could not resolve key from article path');
+        }
 
         // Link
         $article->link = $context['url'];
