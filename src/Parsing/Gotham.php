@@ -38,6 +38,7 @@ final class Gotham implements Parser
                     context: [
                         'date' => $row['publishedAt'],
                         'url' => 'https://www.gothamfc.com' . $row['slug']['current'],
+                        'key' => strval($row['_id']),
                     ],
                 );
             });
@@ -51,7 +52,6 @@ final class Gotham implements Parser
      */
     public function article(Response $response, $context = []): Article
     {
-
         $html = \DOM\HTMLDocument::createFromString($response->body(), LIBXML_NOERROR);
         $container = $html->querySelector('[data-sentry-component="NewsItemContainer"]');
         if (!$container) {
@@ -76,14 +76,7 @@ final class Gotham implements Parser
         $article->title = Str::of($h1->textContent ?? '')->squish()->toString();
 
         // Key
-        $path = parse_url($context['url'], PHP_URL_PATH);
-        if (!$path) {
-            throw new \Exception('Could not resolve article path');
-        }
-        $article->key = Str::of($path)->trim('/')->replace('/', '-')->toString();
-        if (empty($article->key)) {
-            throw new \Exception('Could not resolve key from article path');
-        }
+        $article->key = $context['key'];
 
         // Link
         $article->link = $context['url'];
