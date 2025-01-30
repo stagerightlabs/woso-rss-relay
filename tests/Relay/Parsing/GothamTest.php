@@ -37,13 +37,17 @@ class GothamTest extends TestCase
         Http::fake(['*' => Http::response($this->stub('gotham-article.html'))]);
         $source = new Gotham();
         $response = Http::get('example.com');
-        $article = $source->article($response, ['url' => 'http://example.com/path/to/article', 'date' => '2025-01-22T20:00:44.380Z']);
+        $article = $source->article($response, [
+            'key' => 'this-is-a-key',
+            'url' => 'http://example.com/path/to/article',
+            'date' => '2025-01-22T20:00:44.380Z',
+        ]);
 
         $summary = "HARRISON, NJ (Wednesday, January 22, 2025) - Goalkeeper and NWSL Champion Michelle Betos has announced her retirement from professional soccer today, concluding an incredible career.";
 
         $this->assertInstanceOf(Article::class, $article);
         $this->assertEquals(GothamFC::slug(), $article->site);
-        $this->assertEquals('path-to-article', $article->key);
+        $this->assertEquals('this-is-a-key', $article->key);
         $this->assertEquals('NWSL Champion and Goalkeeper Michelle Betos Announces Retirement from Professional Soccer', $article->title);
         $this->assertEquals('http://example.com/path/to/article', $article->link);
         $this->assertEquals($summary, $article->summary);
