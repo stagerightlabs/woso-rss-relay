@@ -55,6 +55,6 @@ class GothamTest extends TestCase
         $this->assertNotNull($article->published_at);
 
         $this->assertStringContainsString("<p> <strong>HARRISON, NJ </strong>(<em>Wednesday, January 22, 2025</em>) - Goalkeeper and NWSL Champion Michelle Betos", $article->content);
-        $this->assertStringContainsString("https://www.gothamfc.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2F8mpkhoms%2Fproduction%2Fd55f37811d6f8b668a85d3a3b010e44dff712738-1320x880.png%3Fw%3D1600&w=1200&q=75", $article->content);
+        $this->assertStringContainsString("https://cdn.sanity.io/images/8mpkhoms/production/d55f37811d6f8b668a85d3a3b010e44dff712738-1320x880.png?w=1200&q=75", $article->content);
     }
 }
