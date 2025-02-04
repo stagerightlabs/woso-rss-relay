@@ -28,14 +28,4 @@ return Application::configure(basePath: dirname(__DIR__))
             }
         });
     })
-    ->withSchedule(function (Schedule $schedule) {
-        $schedule->call(Gather::class)
-            ->dailyAt('04:00')
-            ->timezone('America/Los_Angeles')
-            ->environments('production');
-        $schedule->call(Prune::class)
-            ->dailyAt('05:00')
-            ->timezone('America/Los_Angeles')
-            ->environments('production');
-    })
     ->create();
