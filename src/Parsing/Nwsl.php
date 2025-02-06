@@ -23,7 +23,7 @@ final class Nwsl implements Parser
     }
 
     /**
-     * Parse the news content into a list of entries.KO
+     * Parse the news content into a list of entries.
      *
      *  @return Collection<array-key, Entry>
      */
