@@ -9,6 +9,7 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
 use Illuminate\Support\Str;
+use Illuminate\Support\Uri;
 use Relay\Article;
 use Relay\Sites\GothamFC;
 
@@ -102,16 +103,13 @@ final class Gotham implements Parser
             ->before(' ')
             ->after('=')
             ->pipe('urldecode')
-            ->pipe(function ($url) {
-                $parts = parse_url($url->toString());
+            ->pipe(function (?string $url) {
+                $uri = Uri::of($url);
 
-                if (!$parts) {
-                    return Str::of('');
-                }
-
-                return Str::of("{$parts['scheme']}://{$parts['host']}{$parts['path']}");
-            })
-            ->append('?w=1200&q=75');
+                return $uri->isEmpty()
+                    ? Str::of('')
+                    : Str::of($uri->withQuery(['w' => '1200', 'q' => 75]));
+            });
 
         // Content
         $paragraphs = $sections->item(1)?->querySelectorAll('div p');
