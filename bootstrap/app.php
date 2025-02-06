@@ -2,11 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Console\Commands\Gather;
-use App\Console\Commands\Prune;
 use App\Http\Middleware\CacheControl;
 use App\Http\Middleware\SetSecurityHeaders;
-use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
