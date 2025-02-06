@@ -8,7 +8,6 @@ use Illuminate\Console\Command;
 use Illuminate\Http\Client\Factory;
 use Illuminate\Log\LogManager;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 use Relay\Article;
 use Relay\Sites\Catalog;
 use Relay\Sites\Site;
