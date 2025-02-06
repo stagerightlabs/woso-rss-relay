@@ -7,6 +7,7 @@ namespace Relay\Parsing;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\LazyCollection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Uri;
@@ -88,14 +89,14 @@ final class Gotham implements Parser
         // Image
         $image = $container->querySelector('img[sizes="600px md:1400px"]');
         if (!$image) {
-            throw new \Exception('Could not find image content');
+            throw new \Exception("Could not find image content: {$context['url']}");
         }
         // Extract the raw image source
         $raw = (new Collection(explode("\n", $image->getAttribute('srcset') ?? '')))
             ->filter()
             ->first();
         if (!$raw) {
-            throw new \Exception('Could not find image content');
+            Log::error("Could not find image path: {$context['url']}");
         }
         // Manipulate the source URL to create a preferable image URL.
         $image = Str::of($raw)

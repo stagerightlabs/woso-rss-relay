@@ -56,6 +56,8 @@ final class Gather extends Command
             return;
         }
 
+        $this->log->info("Gathering articles for {$site->title()}");
+
         // Look at the source index for a list of articles
         $response = $this->http->get($parser->target());
         if (!$response->ok()) {
@@ -73,16 +75,14 @@ final class Gather extends Command
             // If not, attempt to create a new entry.
             $response = $this->http->get($entry->url);
             if (!$response->ok()) {
-                Log::error("Received {$response->getStatusCode()} error when checking '{$entry->url}'");
+                $this->log->error("Received {$response->getStatusCode()} error when checking '{$entry->url}'");
                 continue;
             }
 
             $article = $parser->article($response, $entry->context);
             $article->save();
 
-            if ($this->getOutput()->isVerbose()) {
-                $this->info("New Article for {$site->title()}: {$article->title}");
-            }
+            $this->log->info("New Article for {$site->title()}: {$article->title}");
         }
     }
 
