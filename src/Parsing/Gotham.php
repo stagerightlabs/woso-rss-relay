@@ -99,17 +99,17 @@ final class Gotham implements Parser
             Log::error("Could not find image path: {$context['url']}");
         }
         // Manipulate the source URL to create a preferable image URL.
-        $image = Str::of($raw)
+        $image = Str::of($raw ?? '')
             ->trim()
             ->before(' ')
             ->after('=')
             ->pipe('urldecode')
             ->pipe(function (?string $url) {
-                $uri = Uri::of($url);
+                $uri = Uri::of($url ?? '');
 
                 return $uri->isEmpty()
                     ? Str::of('')
-                    : Str::of($uri->withQuery(['w' => '1200', 'q' => 75]));
+                    : Str::of((string)$uri->withQuery(['w' => '1200', 'q' => 75]));
             });
 
         // Content
