@@ -109,7 +109,7 @@ final class Gotham implements Parser
 
                 return $uri->isEmpty()
                     ? Str::of('')
-                    : Str::of((string)$uri->withQuery(['w' => '1200', 'q' => 75]));
+                    : Str::of((string) $uri->withQuery(['w' => '1200', 'q' => 75]));
             });
 
         // Content
