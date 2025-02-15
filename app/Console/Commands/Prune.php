@@ -6,6 +6,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Relay\Article;
 
 final class Prune extends Command
@@ -43,13 +44,14 @@ final class Prune extends Command
     {
         $recent = Article::where('site', $site)
             ->latest('published_at')
-            ->limit(100)
+            ->limit(50)
             ->pluck('id');
 
-        Article::whereNotIn('id', $recent)->delete();
+        $qualified = Article::where('site', $site)
+            ->whereNotIn('id', $recent);
 
-        if ($this->getOutput()->isVerbose()) {
-            $this->info("Pruned {$site} articles");
-        }
+        Log::info("Removing {$qualified->get()->count()} old articles for {$site}");
+
+        $qualified->delete();
     }
 }
