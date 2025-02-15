@@ -50,6 +50,7 @@ final class Prune extends Command
         $qualified = Article::where('site', $site)
             ->whereNotIn('id', $recent);
 
+        /** @phpstan-ignore larastan.noUnnecessaryCollectionCall */
         Log::info("Removing {$qualified->get()->count()} old articles for {$site}");
 
         $qualified->delete();
