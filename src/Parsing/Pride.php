@@ -34,7 +34,7 @@ final class Pride implements Parser
         $base = Uri::of($this->target());
 
         foreach ($dom->querySelectorAll('.fm-card-wrap.-story') as $link) {
-            $path = $link->getAttribute('href');
+            $path = $link->getAttribute('href') ?? '';
             $key = (string)Str::of($path)->afterLast('/');
             $url = (string)$base->withPath($path);
 
@@ -59,7 +59,7 @@ final class Pride implements Parser
         $article->site = OrlandoPride::slug();
 
         // Title
-        $article->title = (string)Str::of($dom->querySelector('h1.oc-c-article__title')->textContent)->trim();
+        $article->title = (string)Str::of($dom->querySelector('h1.oc-c-article__title')->textContent ?? '')->trim();
 
         // Key
         $article->key = $context['key'];
@@ -68,10 +68,13 @@ final class Pride implements Parser
         $article->link = $context['url'];
 
         // Author
-        $article->author = (string)Str::of($dom->querySelector('.oc-c-article__author-name')->textContent)->trim();
+        $article->author = (string)Str::of($dom->querySelector('.oc-c-article__author-name')->textContent ?? '')->trim();
 
         // Image
-        $image = Str::of($dom->querySelector('.oc-c-article__header-image img')->getAttribute('src'))->trim();
+        $node = $dom->querySelector('.oc-c-article__header-image img');
+        $image = $node
+            ? Str::of($node->getAttribute('src') ?? '')->trim()
+            : Str::of('');
         if ($image->isNotEmpty()) {
             $image = $image
                 ->prepend("<p><img src=\"")
@@ -79,17 +82,21 @@ final class Pride implements Parser
         }
 
         // Summary
-        $summary = (string)Str::of($dom->querySelector('.oc-c-body-part.oc-c-body-part--text')->textContent)
-            ->trim()
-            ->prepend('<p>')
-            ->append('</p>');
+        $node = $dom->querySelector('.oc-c-body-part.oc-c-body-part--text');
+        $summary = $node
+            ? (string)Str::of($node->textContent ?? '')->trim()->prepend('<p>')->append('</p>')
+            : '';
+
         $article->summary = $image->isNotEmpty()
             ? (string)$image->append($summary)
             : $summary;
 
         // Publication Date
-        $timestamp = (string)Str::of($dom->querySelector('p[data-datetime]')->getAttribute('data-datetime'))->trim();
-        $article->published_at = new CarbonImmutable($timestamp);
+        $node = $dom->querySelector('p[data-datetime]');
+        if ($node) {
+            $timestamp = (string)Str::of($node->getAttribute('data-datetime') ?? '')->trim();
+            $article->published_at = new CarbonImmutable($timestamp);
+        }
 
         return $article;
     }

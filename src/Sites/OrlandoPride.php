@@ -64,8 +64,6 @@ final class OrlandoPride implements Site
 
     /**
      * The RSS feed URL provided by the site.
-     *
-     * @phpstan-ignore return.unusedType
      */
     public function rss(): ?string
     {
@@ -74,6 +72,8 @@ final class OrlandoPride implements Site
 
     /**
      * The relay RSS feed URL.
+     *
+     * @phpstan-ignore return.unusedType
      */
     public function relay(): ?string
     {
