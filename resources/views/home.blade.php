@@ -3,7 +3,7 @@
 @section("content")
     <x-card class="mx-2 my-8 md:mx-auto md:max-w-4xl">
         <div
-            class="grid grid-flow-row grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 md:gap-12"
+            class="grid grid-flow-row grid-cols-1 items-start gap-6 sm:grid-cols-2 md:grid-cols-4 md:gap-12"
         >
             @foreach ($sites as $site)
                 <x-site :$site />
