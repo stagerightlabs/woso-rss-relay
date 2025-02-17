@@ -10,7 +10,7 @@ There are a surprising number of websites in this space that do not offer RSS fe
 - [ ] U.S. Soccer
 - [ ] Houston Dash
 - [ ] Kansas City Current
-- [ ] Orlando Pride
+- [x] Orlando Pride
 - [ ] Portland Thorns
 - [ ] Utah Royals
 
