@@ -39,8 +39,7 @@ final class Atom
                 "<title><![CDATA[{$article->title}]]></title>",
                 "<link href=\"{$article->link}\" />",
                 "<id>urn:relay:{$this->site->slug()}:{$article->key}</id>",
-                "<summary><![CDATA[{$article->summary}]]></summary>",
-                "<content><![CDATA[{$article->content}]]></content>",
+                "<summary type=\"html\"><![CDATA[{$article->summary}]]></summary>",
             ]));
 
             // Publication dates

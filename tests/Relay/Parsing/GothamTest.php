@@ -35,9 +35,9 @@ class GothamTest extends TestCase
     public function it_can_parse_a_gotham_article()
     {
         Http::fake(['*' => Http::response($this->stub('gotham-article.html'))]);
-        $source = new Gotham();
+        $parser = new Gotham();
         $response = Http::get('example.com');
-        $article = $source->article($response, [
+        $article = $parser->article($response, [
             'key' => 'this-is-a-key',
             'url' => 'http://example.com/path/to/article',
             'date' => '2025-01-22T20:00:44.380Z',
