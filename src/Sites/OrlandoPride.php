@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Relay\Sites;
 
+use Relay\Parsing\Pride;
+
 final class OrlandoPride implements Site
 {
     /**
@@ -59,7 +61,7 @@ final class OrlandoPride implements Site
      */
     public function parser(): ?\Relay\Parsing\Parser
     {
-        return null;
+        return new Pride();
     }
 
     /**
