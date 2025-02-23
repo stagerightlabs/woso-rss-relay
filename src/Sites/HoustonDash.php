@@ -6,14 +6,14 @@ namespace Relay\Sites;
 
 use Relay\Parsing\Pride;
 
-final class OrlandoPride implements Site
+final class HoustonDash implements Site
 {
     /**
      * The slug used to identify the site.
      */
     public static function slug(): string
     {
-        return 'orlando-pride';
+        return 'houston-dash';
     }
 
     /**
@@ -21,7 +21,7 @@ final class OrlandoPride implements Site
      */
     public function logo(): string
     {
-        return asset('images/orlando-pride-logo.png');
+        return asset('images/houston-dash-logo.png');
     }
 
     /**
@@ -29,7 +29,7 @@ final class OrlandoPride implements Site
      */
     public function title(): string
     {
-        return 'Orlando Pride';
+        return 'Houston Dash';
     }
 
     /**
@@ -45,7 +45,7 @@ final class OrlandoPride implements Site
      */
     public function url(): string
     {
-        return 'https://www.orlandocitysc.com/pride/';
+        return 'https://www.houstondynamofc.com/houstondash/';
     }
 
     /**
@@ -91,6 +91,6 @@ final class OrlandoPride implements Site
      */
     public function youtube(): ?string
     {
-        return 'https://www.youtube.com/feeds/videos.xml?channel_id=UCTB6D04JMYyqoJu6WoDVciw';
+        return 'https://www.youtube.com/feeds/videos.xml?channel_id=UC2MZWUkkNgnPgvz6mnRyGyQ';
     }
 }
