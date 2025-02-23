@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
@@ -17,10 +19,16 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Configure Eloquent strictness
-        if ($this->app->environment('production')) {
-            Model::preventSilentlyDiscardingAttributes();
-            Model::preventLazyLoading();
-        }
+        Model::shouldBeStrict(!app()->isProduction());
+
+        // Eliminate the need for the $fillable property in models
+        Model::unguard();
+
+        // Block destructive commands in production
+        DB::prohibitDestructiveCommands(app()->isProduction());
+
+        // Use immutable dates by default
+        Date::use(CarbonImmutable::class);
     }
 
     /**
