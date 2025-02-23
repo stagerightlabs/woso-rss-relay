@@ -58,6 +58,8 @@ final class OrlandoPride implements Site
 
     /**
      * The parser responsible for reading this site, if applicable.
+     *
+     * @phpstan-ignore return.unusedType
      */
     public function parser(): ?\Relay\Parsing\Parser
     {

@@ -35,8 +35,8 @@ final class Pride implements Parser
 
         foreach ($dom->querySelectorAll('.fm-card-wrap.-story') as $link) {
             $path = $link->getAttribute('href') ?? '';
-            $key = (string)Str::of($path)->afterLast('/');
-            $url = (string)$base->withPath($path);
+            $key = (string) Str::of($path)->afterLast('/');
+            $url = (string) $base->withPath($path);
 
             $entries->push(new Entry($url, $key, ['url' => $url, 'key' => $key]));
         }
@@ -59,7 +59,7 @@ final class Pride implements Parser
         $article->site = OrlandoPride::slug();
 
         // Title
-        $article->title = (string)Str::of($dom->querySelector('h1.oc-c-article__title')->textContent ?? '')->trim();
+        $article->title = (string) Str::of($dom->querySelector('h1.oc-c-article__title')->textContent ?? '')->trim();
 
         // Key
         $article->key = $context['key'];
@@ -68,7 +68,7 @@ final class Pride implements Parser
         $article->link = $context['url'];
 
         // Author
-        $article->author = (string)Str::of($dom->querySelector('.oc-c-article__author-name')->textContent ?? '')->trim();
+        $article->author = (string) Str::of($dom->querySelector('.oc-c-article__author-name')->textContent ?? '')->trim();
 
         // Image
         $node = $dom->querySelector('.oc-c-article__header-image img');
@@ -84,17 +84,17 @@ final class Pride implements Parser
         // Summary
         $node = $dom->querySelector('.oc-c-body-part.oc-c-body-part--text');
         $summary = $node
-            ? (string)Str::of($node->textContent ?? '')->trim()->prepend('<p>')->append('</p>')
+            ? (string) Str::of($node->textContent ?? '')->trim()->prepend('<p>')->append('</p>')
             : '';
 
         $article->summary = $image->isNotEmpty()
-            ? (string)$image->append($summary)
+            ? (string) $image->append($summary)
             : $summary;
 
         // Publication Date
         $node = $dom->querySelector('p[data-datetime]');
         if ($node) {
-            $timestamp = (string)Str::of($node->getAttribute('data-datetime') ?? '')->trim();
+            $timestamp = (string) Str::of($node->getAttribute('data-datetime') ?? '')->trim();
             $article->published_at = new CarbonImmutable($timestamp);
         }
 
