@@ -26,6 +26,7 @@ final class Catalog
         GothamFC::class,
         OrlandoPride::class,
         KansasCityCurrent::class,
+        HoustonDash::class,
     ];
 
     /**
