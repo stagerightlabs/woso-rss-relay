@@ -10,16 +10,16 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Uri;
 use Relay\Article;
-use Relay\Sites\OrlandoPride;
+use Relay\Sites\KansasCityCurrent;
 
-final class Pride implements Parser
+final class Current implements Parser
 {
     /**
      * The URL for the index page to be scraped.
      */
     public function target(): string
     {
-        return 'https://www.orlandocitysc.com/pride/news/';
+        return 'https://www.kansascitycurrent.com/news';
     }
 
     /**
@@ -33,7 +33,7 @@ final class Pride implements Parser
         $entries = new Collection();
         $base = Uri::of($this->target());
 
-        foreach ($dom->querySelectorAll('.fm-card-wrap.-story') as $link) {
+        foreach ($dom->querySelectorAll('a.news-story-tile') as $link) {
             $path = $link->getAttribute('href') ?? '';
             $key = (string) Str::of($path)->afterLast('/');
             $url = (string) $base->withPath($path);
@@ -56,10 +56,10 @@ final class Pride implements Parser
         $article = new Article();
 
         // Slug
-        $article->site = OrlandoPride::slug();
+        $article->site = KansasCityCurrent::slug();
 
         // Title
-        $article->title = (string) Str::of($dom->querySelector('h1.oc-c-article__title')->textContent ?? '')->trim();
+        $article->title = (string) Str::of($dom->querySelector('h1.news-article-headline')->textContent ?? '')->trim();
 
         // Key
         $article->key = $context['key'];
@@ -68,21 +68,21 @@ final class Pride implements Parser
         $article->link = $context['url'];
 
         // Author
-        $article->author = (string) Str::of($dom->querySelector('.oc-c-article__author-name')->textContent ?? '')->trim();
+        $article->author = 'Kansas City Current';
 
         // Image
-        $node = $dom->querySelector('.oc-c-article__header-image img');
+        $node = $dom->querySelector('.news-hero-background img');
         $image = $node
             ? Str::of($node->getAttribute('src') ?? '')->trim()
             : Str::of('');
         if ($image->isNotEmpty()) {
             $image = $image
-                ->prepend("<p><img src=\"")
+                ->prepend("<p><img src=\"https://www.kansascitycurrent.com")
                 ->append("\" alt=\"{$article->title}\" /></p>\n\n");
         }
 
         // Summary
-        $node = $dom->querySelector('.oc-c-body-part.oc-c-body-part--text');
+        $node = $dom->querySelector('.page-modules .html-area p');
         $summary = $node
             ? (string) Str::of($node->textContent ?? '')->trim()->prepend('<p>')->append('</p>')
             : '';
@@ -92,9 +92,9 @@ final class Pride implements Parser
             : $summary;
 
         // Publication Date
-        $node = $dom->querySelector('p[data-datetime]');
+        $node = $dom->querySelector('p.news-article-date');
         if ($node) {
-            $timestamp = (string) Str::of($node->getAttribute('data-datetime') ?? '')->trim();
+            $timestamp = (string) Str::of($node->textContent ?? '')->after('|')->trim();
             $article->published_at = new CarbonImmutable($timestamp);
         }
 

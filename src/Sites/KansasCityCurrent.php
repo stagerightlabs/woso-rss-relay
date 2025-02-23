@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Relay\Sites;
 
-use Relay\Parsing\Pride;
+use Relay\Parsing\Current;
 
-final class OrlandoPride implements Site
+final class KansasCityCurrent implements Site
 {
     /**
      * The slug used to identify the site.
      */
     public static function slug(): string
     {
-        return 'orlando-pride';
+        return 'kc-current';
     }
 
     /**
@@ -21,7 +21,7 @@ final class OrlandoPride implements Site
      */
     public function logo(): string
     {
-        return asset('images/orlando-pride.png');
+        return asset('images/kc-current-logo.png');
     }
 
     /**
@@ -29,7 +29,7 @@ final class OrlandoPride implements Site
      */
     public function title(): string
     {
-        return 'Orlando Pride';
+        return 'Kansas City Current';
     }
 
     /**
@@ -45,7 +45,7 @@ final class OrlandoPride implements Site
      */
     public function url(): string
     {
-        return 'https://www.orlandocitysc.com/pride/';
+        return 'https://www.kansascitycurrent.com/';
     }
 
     /**
@@ -63,7 +63,7 @@ final class OrlandoPride implements Site
      */
     public function parser(): ?\Relay\Parsing\Parser
     {
-        return new Pride();
+        return new Current();
     }
 
     /**
@@ -91,6 +91,6 @@ final class OrlandoPride implements Site
      */
     public function youtube(): ?string
     {
-        return 'https://www.youtube.com/feeds/videos.xml?channel_id=UCTB6D04JMYyqoJu6WoDVciw';
+        return 'https://www.youtube.com/feeds/videos.xml?channel_id=UCBAiCRwZO9oysnXP4125xow';
     }
 }

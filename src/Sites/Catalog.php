@@ -25,6 +25,7 @@ final class Catalog
         WashingtonSpirit::class,
         GothamFC::class,
         OrlandoPride::class,
+        KansasCityCurrent::class,
     ];
 
     /**
