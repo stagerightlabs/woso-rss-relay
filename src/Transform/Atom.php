@@ -72,7 +72,6 @@ final class Atom
             <updated>{$this->timestamp()}</updated>
             <author>
                 <name>{$this->site->title()}</name>
-                <name>RSS Relay Service</name>
             </author>
             <generator>RSS Relay Service</generator>
             <id>urn:relay:{$this->site->slug()}</id>
