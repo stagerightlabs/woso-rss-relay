@@ -8,7 +8,7 @@ There are a surprising number of websites in this space that do not offer RSS fe
 - [x] NWSL
 - [x] Gotham FC
 - [ ] U.S. Soccer
-- [ ] Houston Dash
+- [x] Houston Dash
 - [x] Kansas City Current
 - [x] Orlando Pride
 - [ ] Portland Thorns
