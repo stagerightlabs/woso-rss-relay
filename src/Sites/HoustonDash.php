@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Relay\Sites;
 
-use Relay\Parsing\Pride;
+use Relay\Parsing\Dash;
 
 final class HoustonDash implements Site
 {
@@ -63,7 +63,7 @@ final class HoustonDash implements Site
      */
     public function parser(): ?\Relay\Parsing\Parser
     {
-        return new Pride();
+        return new Dash();
     }
 
     /**
