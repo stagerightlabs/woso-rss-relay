@@ -25,11 +25,11 @@
             This is a work in progress. More sites will be added in the future:
         </p>
         <ul class="mb-4 ml-4 list-inside list-disc">
-            <li>Houston Dash</li>
-            <li>Kansas City Current</li>
-            <li>Orlando Pride</li>
-            <li>Portland Thorns</li>
             <li>Utah Royals</li>
+            <li>Portland Thorns</li>
+            <li>Denver</li>
+            <li>Boston</li>
+            <li>Podcasts</li>
             <li>More...?</li>
         </ul>
         <p class="mb-4">
