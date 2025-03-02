@@ -27,6 +27,7 @@ final class Catalog
         OrlandoPride::class,
         KansasCityCurrent::class,
         HoustonDash::class,
+        UtahRoyals::class,
     ];
 
     /**
