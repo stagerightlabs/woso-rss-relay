@@ -76,10 +76,12 @@ final class UtahRoyals implements Site
 
     /**
      * The relay RSS feed URL.
+     *
+     * @phpstan-ignore return.unusedType
      */
     public function relay(): ?string
     {
-        return null;
+        return route('feed', $this->slug());
     }
 
     /**
