@@ -36,7 +36,7 @@ final class Thorns implements Parser
         foreach ($dom->querySelectorAll('a.large-link') as $link) {
             $path = $link->getAttribute('href') ?? '';
             $key = (string) Str::of($path)->afterLast('/');
-            $url = (string) Str::of($base->withPath($path))->before('?');
+            $url = (string) Str::of((string) $base->withPath($path))->before('?');
 
             $entries->push(new Entry($url, $key, ['url' => $url, 'key' => $key]));
         }
@@ -72,7 +72,8 @@ final class Thorns implements Parser
 
         // Image
         $node = $dom->querySelector('.background-photo');
-        $image = Str::of($node->getAttribute('style'))->between("\"", "\"");
+        $style = $node ? ($node->getAttribute('style') ?? '') : '';
+        $image = Str::of($style)->between("\"", "\"");
         if ($image->isNotEmpty()) {
             $image = $image
                 ->prepend("<p><img src=\"")
