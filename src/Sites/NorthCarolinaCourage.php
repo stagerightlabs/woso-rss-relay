@@ -69,7 +69,7 @@ final class NorthCarolinaCourage implements Site
      */
     public function rss(): ?string
     {
-        return 'https://www.nccourage.com/feed/';
+        return 'https://www.nccourage.com/news/feed/';
     }
 
     /**
