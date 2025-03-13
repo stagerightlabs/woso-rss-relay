@@ -28,6 +28,7 @@ final class Catalog
         KansasCityCurrent::class,
         HoustonDash::class,
         UtahRoyals::class,
+        PortlandThorns::class,
     ];
 
     /**

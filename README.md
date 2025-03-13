@@ -11,8 +11,8 @@ There are a surprising number of websites in this space that do not offer RSS fe
 - [x] Houston Dash
 - [x] Kansas City Current
 - [x] Orlando Pride
-- [ ] Portland Thorns
-- [ ] Utah Royals
+- [x] Portland Thorns
+- [x] Utah Royals
 
 More...?
 
