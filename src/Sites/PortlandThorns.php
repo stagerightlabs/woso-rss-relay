@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Relay\Sites;
 
-use Relay\Parsing\Nwsl as NwslParser;
+use Relay\Parsing\Thorns;
 
 final class PortlandThorns implements Site
 {
@@ -65,7 +65,7 @@ final class PortlandThorns implements Site
      */
     public function parser(): ?\Relay\Parsing\Parser
     {
-        return new NwslParser();
+        return new Thorns();
     }
 
     /**
