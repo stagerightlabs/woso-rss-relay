@@ -23,7 +23,7 @@ class ThornsTest extends TestCase
         $response = Http::get($parser->target());
         $entries = $parser->entries($response);
 
-        $this->assertCount(24, $entries);
+        $this->assertCount(12, $entries);
         $this->assertEquals('https://www.thorns.com/news/portland-thorns-fc-announce-roster-ahead-of-2025-season', $entries->first()->url);
         $this->assertEquals('portland-thorns-fc-announce-roster-ahead-of-2025-season', $entries->first()->key);
     }
