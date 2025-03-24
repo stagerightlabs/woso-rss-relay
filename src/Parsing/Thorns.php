@@ -38,7 +38,9 @@ final class Thorns implements Parser
             $key = (string) Str::of($path)->afterLast('/');
             $url = (string) Str::of((string) $base->withPath($path))->before('?');
 
-            $entries->push(new Entry($url, $key, ['url' => $url, 'key' => $key]));
+            if (Str::contains($url, '/news/')) {
+                $entries->push(new Entry($url, $key, ['url' => $url, 'key' => $key]));
+            }
         }
 
         return $entries;
@@ -91,7 +93,7 @@ final class Thorns implements Parser
             : $summary;
 
         // Publication Date
-        $node = $dom->querySelector('.news-grid-meta-wrapper');
+        $node = $dom->querySelector('.article-cell .news-grid-meta-wrapper');
         if ($node) {
             $timestamp = (string) Str::of($node->childNodes[3]->textContent ?? '')->trim();
             $article->published_at = new CarbonImmutable($timestamp);
