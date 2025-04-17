@@ -29,6 +29,7 @@ final class Catalog
         HoustonDash::class,
         UtahRoyals::class,
         PortlandThorns::class,
+        Nsl::class,
     ];
 
     /**
@@ -53,6 +54,23 @@ final class Catalog
     public static function sorted(): Collection
     {
         return self::all()->sort(fn($a, $b) => strnatcasecmp($a->title(), $b->title()));
+    }
+
+    /**
+     * Return a collection of available sites grouped by category.
+     *
+     * @return Collection<string,Collection<array-key,Site>>
+     */
+    public static function grouped(): Collection
+    {
+        /** @var Collection<string,Collection<array-key,Site>> */
+        $grouped = self::all()->groupBy(fn($site) => $site->category()->value);
+
+        return $grouped->map(
+            fn($sites) =>
+            /** @var Collection<array-key,Site> */
+            $sites->sort(fn($a, $b) => strnatcasecmp($a->title(), $b->title())),
+        );
     }
 
     /**

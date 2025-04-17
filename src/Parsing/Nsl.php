@@ -10,22 +10,22 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Uri;
 use Relay\Article;
-use Relay\Sites\PortlandThorns;
+use Relay\Sites\Nsl as NslSite;
 
-final class Thorns implements Parser
+final class Nsl implements Parser
 {
     /**
-     * The URL for the index page to be scraped.
+     * Fetch the contents of the source index page.
      */
     public function target(): string
     {
-        return 'https://www.thorns.com/news?mediatype=Articles';
+        return 'https://www.nsl.ca/news';
     }
 
     /**
-     * Parse an index response into a list of entries.
+     * Parse the news content into a list of entries.
      *
-     * @return Collection<array-key, Entry>
+     *  @return Collection<array-key, Entry>
      */
     public function entries(Response $response): Collection
     {
@@ -33,10 +33,17 @@ final class Thorns implements Parser
         $entries = new Collection();
         $base = Uri::of($this->target());
 
-        foreach ($dom->querySelectorAll('a.large-link') as $link) {
-            $path = $link->getAttribute('href') ?? '';
+        $count = 0;
+        foreach ($dom->querySelectorAll('.entries-list-item') as $entry) {
+            $count++;
+            if ($count > 6) {
+                break;
+            }
+
+            $link = $entry->querySelector('a');
+            $path = $link ? ($link->getAttribute('href') ?? '') : '';
             $key = (string) Str::of($path)->afterLast('/');
-            $url = (string) Str::of((string) $base->withPath($path))->before('?');
+            $url = (string) Str::of($path)->before('?');
 
             if (Str::contains($url, '/news/')) {
                 $entries->push(new Entry($url, $key, ['url' => $url, 'key' => $key]));
@@ -47,10 +54,7 @@ final class Thorns implements Parser
     }
 
     /**
-     * Create an article from a content response.
-     *
-     * @param array<string,string> $context
-     * @return Article
+     * Create an article from rss entry content.
      */
     public function article(Response $response, array $context = []): Article
     {
@@ -58,10 +62,10 @@ final class Thorns implements Parser
         $article = new Article();
 
         // Slug
-        $article->site = PortlandThorns::slug();
+        $article->site = NslSite::slug();
 
         // Title
-        $article->title = (string) Str::of($dom->querySelector('h1.blog-post-heading')->textContent ?? '')->squish();
+        $article->title = (string) Str::of($dom->querySelector('.news-article h3')->textContent ?? '')->squish();
 
         // Key
         $article->key = $context['key'];
@@ -70,12 +74,13 @@ final class Thorns implements Parser
         $article->link = $context['url'];
 
         // Author
-        $article->author = 'Portland Thorns';
+        $article->author = 'Northern Super League';
 
         // Image
-        $node = $dom->querySelector('.background-photo');
-        $style = $node ? ($node->getAttribute('style') ?? '') : '';
-        $image = Str::of($style)->between("\"", "\"");
+        $node = $dom->querySelector('.news-article img');
+        $image = $node
+            ? Str::of($node->getAttribute('src') ?? '')->trim()
+            : Str::of('');
         if ($image->isNotEmpty()) {
             $image = $image
                 ->prepend("<p><img src=\"")
@@ -83,7 +88,7 @@ final class Thorns implements Parser
         }
 
         // Summary
-        $node = $dom->querySelector('.rich-text-style p');
+        $node = $dom->querySelector('.news-article .rich-text p');
         $summary = $node
             ? (string) Str::of($node->textContent ?? '')->squish()->prepend('<p>')->append('</p>')
             : '';
@@ -93,11 +98,12 @@ final class Thorns implements Parser
             : $summary;
 
         // Publication Date
-        $node = $dom->querySelector('.article-cell .news-grid-meta-wrapper');
+        $node = $dom->querySelector('.news-article .text-tag');
         if ($node) {
-            $timestamp = (string) Str::of($node->childNodes[3]->textContent ?? '')->trim();
+            $timestamp = (string) Str::of($node->textContent ?? '')->trim();
             $article->published_at = new CarbonImmutable($timestamp);
         }
+
 
         return $article;
     }
