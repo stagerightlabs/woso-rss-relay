@@ -14,10 +14,8 @@ class HomeController extends Controller
      */
     public function __invoke(Catalog $catalog): View
     {
-        $sites = $catalog->sorted();
-
         return view('home', [
-            'sites' => $sites,
+            'sites' => $catalog->grouped(),
         ]);
     }
 }
