@@ -16,7 +16,7 @@ class TidesTest extends TestCase
     use RefreshDatabase;
 
     #[Test]
-    public function it_can_parse_the_nsl_index()
+    public function it_can_parse_the_tides_index()
     {
         Http::fake(['*' => Http::response($this->stub('tides.html'))]);
         $parser = new Tides();
@@ -29,7 +29,7 @@ class TidesTest extends TestCase
     }
 
     #[Test]
-    public function it_can_parse_an_nsl_article()
+    public function it_can_parse_a_tides_article()
     {
         Http::fake(['*' => Http::response($this->stub('tides-article.html'))]);
         $parser = new Tides();

@@ -16,7 +16,7 @@ class RiseTest extends TestCase
     use RefreshDatabase;
 
     #[Test]
-    public function it_can_parse_the_nsl_index()
+    public function it_can_parse_the_rise_index()
     {
         Http::fake(['*' => Http::response($this->stub('rise.html'))]);
         $parser = new Rise();
@@ -29,7 +29,7 @@ class RiseTest extends TestCase
     }
 
     #[Test]
-    public function it_can_parse_an_nsl_article()
+    public function it_can_parse_a_rise_article()
     {
         Http::fake(['*' => Http::response($this->stub('rise-article.html'))]);
         $parser = new Rise();

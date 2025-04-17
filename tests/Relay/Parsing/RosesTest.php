@@ -16,7 +16,7 @@ class RosesTest extends TestCase
     use RefreshDatabase;
 
     #[Test]
-    public function it_can_parse_the_nsl_index()
+    public function it_can_parse_the_roses_index()
     {
         Http::fake(['*' => Http::response($this->stub('roses.html'))]);
         $parser = new Roses();
@@ -29,7 +29,7 @@ class RosesTest extends TestCase
     }
 
     #[Test]
-    public function it_can_parse_an_nsl_article()
+    public function it_can_parse_a_roses_article()
     {
         Http::fake(['*' => Http::response($this->stub('roses-article.html'))]);
         $parser = new Roses();

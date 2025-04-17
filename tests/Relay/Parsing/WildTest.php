@@ -16,7 +16,7 @@ class WildTest extends TestCase
     use RefreshDatabase;
 
     #[Test]
-    public function it_can_parse_the_nsl_index()
+    public function it_can_parse_the_wild_index()
     {
         Http::fake(['*' => Http::response($this->stub('wild.html'))]);
         $parser = new Wild();
@@ -29,7 +29,7 @@ class WildTest extends TestCase
     }
 
     #[Test]
-    public function it_can_parse_an_nsl_article()
+    public function it_can_parse_a_wild_article()
     {
         Http::fake(['*' => Http::response($this->stub('wild-article.html'))]);
         $parser = new Wild();
