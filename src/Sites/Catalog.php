@@ -34,6 +34,7 @@ final class Catalog
         CalgaryWild::class,
         HalifaxTides::class,
         MontrealRoses::class,
+        OttawaRapid::class,
     ];
 
     /**
