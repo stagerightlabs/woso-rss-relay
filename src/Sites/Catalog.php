@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Relay\Sites;
 
 use Illuminate\Support\Collection;
+use Relay\Sites\VancouverRise;
 
 final class Catalog
 {
@@ -30,6 +31,7 @@ final class Catalog
         UtahRoyals::class,
         PortlandThorns::class,
         Nsl::class,
+        VancouverRise::class,
     ];
 
     /**
