@@ -32,6 +32,7 @@ final class Catalog
         Nsl::class,
         VancouverRise::class,
         CalgaryWild::class,
+        HalifaxTides::class,
     ];
 
     /**
