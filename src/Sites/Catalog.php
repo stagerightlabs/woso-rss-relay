@@ -30,6 +30,12 @@ final class Catalog
         UtahRoyals::class,
         PortlandThorns::class,
         Nsl::class,
+        VancouverRise::class,
+        CalgaryWild::class,
+        HalifaxTides::class,
+        MontrealRoses::class,
+        OttawaRapid::class,
+        AfcToronto::class,
     ];
 
     /**

@@ -22,13 +22,15 @@
             at stagerightlabs dot com.
         </p>
         <p class="mb-4">
+            Note: At the moment the relay is only aggregating english language
+            content.
+        </p>
+        <p class="mb-4">
             This is a work in progress. More sites will be added in the future:
         </p>
         <ul class="mb-4 ml-4 list-inside list-disc">
-            <li>Utah Royals</li>
-            <li>Portland Thorns</li>
-            <li>Denver</li>
-            <li>Boston</li>
+            <li>NWSL Denver</li>
+            <li>NWSL Boston</li>
             <li>Podcasts</li>
             <li>More...?</li>
         </ul>
@@ -37,8 +39,8 @@
             <a href="{{ route("updates") }}">{{ route("updates") }}</a>
         </p>
         <p class="mb-8">
-            This is a resource for fans, built by fans. Original copyrights
-            remain in the hands of their respective organizations.
+            The WoSo RSS relay is a resource for fans built by a fan. Original
+            copyrights remain with their owners.
         </p>
         <div class="sm:flex sm:justify-around">
             <a

@@ -9,16 +9,16 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Relay\Article;
-use Relay\Sites\Nsl as NslSite;
+use Relay\Sites\VancouverRise;
 
-final class Nsl implements Parser
+final class Rise implements Parser
 {
     /**
      * Fetch the contents of the source index page.
      */
     public function target(): string
     {
-        return 'https://www.nsl.ca/news';
+        return 'https://www.vanrisefc.com/news';
     }
 
     /**
@@ -60,7 +60,7 @@ final class Nsl implements Parser
         $article = new Article();
 
         // Slug
-        $article->site = NslSite::slug();
+        $article->site = VancouverRise::slug();
 
         // Title
         $article->title = (string) Str::of($dom->querySelector('.news-article h3')->textContent ?? '')->squish();
@@ -72,7 +72,7 @@ final class Nsl implements Parser
         $article->link = $context['url'];
 
         // Author
-        $article->author = 'Northern Super League';
+        $article->author = 'Vancouver Rise FC';
 
         // Image
         $node = $dom->querySelector('.news-article img');
@@ -111,6 +111,7 @@ final class Nsl implements Parser
             $timestamp = (string) Str::of($node->textContent ?? '')->trim();
             $article->published_at = new CarbonImmutable($timestamp);
         }
+
 
         return $article;
     }

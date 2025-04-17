@@ -41,6 +41,7 @@ class NslTest extends TestCase
         $expected = <<<HTML
         <p><img src="https://d2kqzfy3a9h1xl.cloudfront.net/nsl-prod/league/NSL-MD-1.png" alt="MD-1: It All Begins Here" /></p>\n
         <p>History is only made once.</p>
+        <p>After years of dreaming, planning, building, and believing, the Northern Super League is finally ready to take the pitch. Tomorrow, on April 16, professional women’s soccer officially kicks off in Canada with the first match of the NSL’s inaugural season, marking a seismic moment for sport, equity, and culture in this country.</p>\n
         HTML;
 
         $this->assertInstanceOf(Article::class, $article);

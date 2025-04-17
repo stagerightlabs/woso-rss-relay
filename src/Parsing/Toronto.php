@@ -9,16 +9,16 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Relay\Article;
-use Relay\Sites\Nsl as NslSite;
+use Relay\Sites\AfcToronto;
 
-final class Nsl implements Parser
+final class Toronto implements Parser
 {
     /**
      * Fetch the contents of the source index page.
      */
     public function target(): string
     {
-        return 'https://www.nsl.ca/news';
+        return 'https://www.afctoronto.ca/news';
     }
 
     /**
@@ -60,7 +60,7 @@ final class Nsl implements Parser
         $article = new Article();
 
         // Slug
-        $article->site = NslSite::slug();
+        $article->site = AfcToronto::slug();
 
         // Title
         $article->title = (string) Str::of($dom->querySelector('.news-article h3')->textContent ?? '')->squish();
@@ -72,7 +72,7 @@ final class Nsl implements Parser
         $article->link = $context['url'];
 
         // Author
-        $article->author = 'Northern Super League';
+        $article->author = 'AFC Toronto';
 
         // Image
         $node = $dom->querySelector('.news-article img');
@@ -106,7 +106,7 @@ final class Nsl implements Parser
             : $summary->toString();
 
         // Publication Date
-        $node = $dom->querySelector('.news-article .text-tag');
+        $node = $dom->querySelector('.news-article div.text-tag');
         if ($node) {
             $timestamp = (string) Str::of($node->textContent ?? '')->trim();
             $article->published_at = new CarbonImmutable($timestamp);
