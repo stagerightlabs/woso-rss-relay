@@ -8,7 +8,6 @@ use Carbon\CarbonImmutable;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Illuminate\Support\Uri;
 use Relay\Article;
 use Relay\Sites\Nsl as NslSite;
 
@@ -31,7 +30,6 @@ final class Nsl implements Parser
     {
         $dom = \Dom\HTMLDocument::createFromString($response->body(), LIBXML_NOERROR);
         $entries = new Collection();
-        $base = Uri::of($this->target());
 
         $count = 0;
         foreach ($dom->querySelectorAll('.entries-list-item') as $entry) {
@@ -87,11 +85,21 @@ final class Nsl implements Parser
                 ->append("\" alt=\"{$article->title}\" /></p>\n\n");
         }
 
-        // Summary
-        $node = $dom->querySelector('.news-article .rich-text p');
-        $summary = $node
-            ? (string) Str::of($node->textContent ?? '')->squish()->prepend('<p>')->append('</p>')
-            : '';
+        // Prepare Summary
+        $nodes = $dom->querySelectorAll('.news-article .rich-text p');
+        $summary = Str::of('');
+
+        // First paragraph
+        if ($p = $nodes->item(0)) {
+            $paragraph = (string) Str::of($p->textContent ?? '')->squish()->prepend('<p>')->append("</p>\n");
+            $summary = $summary->append($paragraph);
+        }
+
+        // Second paragraph
+        if ($p = $nodes->item(1)) {
+            $paragraph = (string) Str::of($p->textContent ?? '')->squish()->prepend('<p>')->append("</p>\n");
+            $summary = $summary->append($paragraph);
+        }
 
         $article->summary = $image->isNotEmpty()
             ? (string) $image->append($summary)
