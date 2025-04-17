@@ -33,6 +33,7 @@ final class Catalog
         VancouverRise::class,
         CalgaryWild::class,
         HalifaxTides::class,
+        MontrealRoses::class,
     ];
 
     /**
