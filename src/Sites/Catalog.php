@@ -35,6 +35,7 @@ final class Catalog
         HalifaxTides::class,
         MontrealRoses::class,
         OttawaRapid::class,
+        AfcToronto::class,
     ];
 
     /**
