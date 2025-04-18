@@ -106,7 +106,7 @@ final class Rapid implements Parser
             : $summary->toString();
 
         // Publication Date
-        $node = $dom->querySelector('.news-article .text-tag');
+        $node = $dom->querySelector('.news-article div.text-tag');
         if ($node) {
             $timestamp = (string) Str::of($node->textContent ?? '')->trim();
             $article->published_at = new CarbonImmutable($timestamp);
