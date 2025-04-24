@@ -5,7 +5,6 @@
     },
     "prettier.documentSelectors": ["**/*.blade.php"],
     "cSpell.words": ["bayfc", "Nwsl", "Ulids", "vite"],
-    // ...
     "search.exclude": {
         "**/.coverage": true,
         "**/.git": true,
