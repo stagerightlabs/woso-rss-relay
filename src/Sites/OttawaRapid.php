@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Relay\Sites;
 
-use Relay\Parsing\Rise;
+use Relay\Parsing\Rapid;
 
 final class OttawaRapid implements Site
 {
@@ -65,7 +65,7 @@ final class OttawaRapid implements Site
      */
     public function parser(): ?\Relay\Parsing\Parser
     {
-        return new Rise();
+        return new Rapid();
     }
 
     /**
