@@ -36,6 +36,7 @@ final class Catalog
         MontrealRoses::class,
         OttawaRapid::class,
         AfcToronto::class,
+        UsSoccer::class,
     ];
 
     /**
@@ -72,7 +73,7 @@ final class Catalog
         /** @var Collection<string,Collection<array-key,Site>> */
         $grouped = self::all()->groupBy(fn($site) => $site->category()->value);
 
-        return $grouped->map(
+        return $grouped->sort()->map(
             fn($sites) =>
             /** @var Collection<array-key,Site> */
             $sites->sort(fn($a, $b) => strnatcasecmp($a->title(), $b->title())),
