@@ -8,10 +8,8 @@
         @env("production")
             <script
                 async
-                defer
-                nonce="{{ \Illuminate\Support\Facades\Vite::cspNonce() }}"
-                src="https://umami.stagerightlabs.com/script.js"
-                data-website-id="e932c63c-76d0-4565-910c-5df71f6b327f"
+                src="https://cdn.seline.com/seline.js"
+                data-token="05b033d10d0b495"
             ></script>
         @endenv
     </head>
