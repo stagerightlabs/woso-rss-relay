@@ -37,6 +37,7 @@ final class Catalog
         OttawaRapid::class,
         AfcToronto::class,
         UsSoccer::class,
+        BostonLegacy::class,
     ];
 
     /**
