@@ -58,9 +58,10 @@ final class Gather extends Command
         $this->log->info("Gathering articles for {$site->title()}");
 
         // Look at the source index for a list of articles
+        /** @var \Illuminate\Http\Client\Response $response */
         $response = $this->http->get($parser->target());
-        if (!$response->ok()) {
-            $this->log->error("Received {$response->getStatusCode()} error when checking '{$parser->target()}'");
+        if (!$response->successful()) {
+            $this->log->error("Received {$response->status()} error when checking '{$parser->target()}'");
             return;
         }
 
@@ -72,9 +73,10 @@ final class Gather extends Command
             }
 
             // If not, attempt to create a new entry.
+            /** @var \Illuminate\Http\Client\Response $response */
             $response = $this->http->get($entry->url);
-            if (!$response->ok()) {
-                $this->log->error("Received {$response->getStatusCode()} error when checking '{$entry->url}'");
+            if (!$response->successful()) {
+                $this->log->error("Received {$response->status()} error when checking '{$entry->url}'");
                 continue;
             }
 

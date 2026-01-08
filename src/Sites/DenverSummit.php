@@ -6,21 +6,21 @@ namespace Relay\Sites;
 
 use Relay\Parsing\Parser;
 
-class BostonLegacy implements Site
+class DenverSummit implements Site
 {
     public static function slug(): string
     {
-        return 'boston-legacy';
+        return 'denver-summit';
     }
 
     public function logo(): string
     {
-        return asset('images/boston-legacy-fc-crest.svg');
+        return asset('images/denver-summit-crest.png');
     }
 
     public function title(): string
     {
-        return 'Boston Legacy';
+        return 'Denver Summit';
     }
 
     public function description(): ?string
@@ -30,7 +30,7 @@ class BostonLegacy implements Site
 
     public function url(): string
     {
-        return 'https://bostonlegacyfc.com/';
+        return 'https://www.denversummitfc.com';
     }
 
     public function category(): Category
@@ -45,7 +45,7 @@ class BostonLegacy implements Site
 
     public function rss(): ?string
     {
-        return 'https://bostonlegacyfc.com/blogs/press.atom';
+        return 'https://www.denversummitfc.com/blogs/news.atom';
     }
 
     public function relay(): ?string
@@ -55,7 +55,7 @@ class BostonLegacy implements Site
 
     public function youtube(): ?string
     {
-        return 'https://www.youtube.com/feeds/videos.xml?channel_id=UCldSagc3AQQciyc49xhVsnw';
+        return 'https://www.youtube.com/feeds/videos.xml?channel_id=UC55HcqZQqqdnkjsWWrD01Wg';
     }
 
 }
