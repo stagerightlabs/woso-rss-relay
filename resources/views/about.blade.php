@@ -29,8 +29,6 @@
             This is a work in progress. More sites will be added in the future:
         </p>
         <ul class="mb-4 ml-4 list-inside list-disc">
-            <li>NWSL Denver</li>
-            <li>NWSL Boston</li>
             <li>Podcasts</li>
             <li>More...?</li>
         </ul>
