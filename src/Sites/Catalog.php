@@ -76,9 +76,9 @@ final class Catalog
         $grouped = self::all()->groupBy(fn($site) => $site->category()->value);
 
         return $grouped->sort()->map(
-            fn($sites) =>
+            fn($sites)
             /** @var Collection<array-key,Site> */
-            $sites->sort(fn($a, $b) => strnatcasecmp($a->title(), $b->title())),
+            => $sites->sort(fn($a, $b) => strnatcasecmp($a->title(), $b->title())),
         );
     }
 

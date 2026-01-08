@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Relay\Sites;
 
 use Relay\Parsing\Parser;
@@ -13,7 +15,7 @@ class BostonLegacy implements Site
 
     public function logo(): string
     {
-       return asset('images/boston-legacy-fc-crest.svg');
+        return asset('images/boston-legacy-fc-crest.svg');
     }
 
     public function title(): string
@@ -28,7 +30,7 @@ class BostonLegacy implements Site
 
     public function url(): string
     {
-       return 'https://bostonlegacyfc.com/';
+        return 'https://bostonlegacyfc.com/';
     }
 
     public function category(): Category
