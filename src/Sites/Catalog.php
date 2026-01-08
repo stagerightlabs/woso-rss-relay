@@ -38,6 +38,7 @@ final class Catalog
         AfcToronto::class,
         UsSoccer::class,
         BostonLegacy::class,
+        DenverSummit::class,
     ];
 
     /**
