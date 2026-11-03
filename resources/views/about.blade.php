@@ -5,8 +5,7 @@
         <header class="mb-4 sm:mb-0 sm:flex sm:justify-between">
             <h1 class="mb-4 text-xl">WoSo RSS Relay</h1>
             <aside>
-                v{{ \Carbon\Carbon::createFromTimeString(config("relay.release_date"))->format("Ymd") }}
-                &bull; {{ config("relay.release_commit") }}
+                v{{ \Carbon\Carbon::createFromTimeString(config("relay.release_date"))->format("Ymd") }} &bull; {{ config("relay.release_commit") }}
             </aside>
         </header>
         <p class="mb-4">

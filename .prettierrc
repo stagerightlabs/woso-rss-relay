@@ -1,5 +1,8 @@
 {
     "plugins": ["prettier-plugin-blade", "prettier-plugin-tailwindcss"],
+    "bladeDirectiveArgSpacing": "none",
+    "bladeInlineIntentElements": ["svg", "svg:*"],
+    "bladeKeepHeadAndBodyAtRoot": false,
     "tailwindStylesheet": "./resources/css/app.css",
     "overrides": [
         {

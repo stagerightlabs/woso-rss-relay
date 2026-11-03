@@ -70,6 +70,16 @@
   resolved "https://registry.yarnpkg.com/@oxc-project/types/-/types-0.156.0.tgz#00e35b1ead490d81b4c7fe1dbfe35fc55e89c5e6"
   integrity sha512-1Duyg48TdJNdyhEB8Xn1L36bT9Pv6GUtlKjHxOys8xkaF/rQq3XJE+bAurSK/AgIz5mGFsb77cn9Pb20+WCScw==
 
+"@prettier/html-tags@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@prettier/html-tags/-/html-tags-2.2.0.tgz#a8a98047856272dd6309831d0edd6966592acce8"
+  integrity sha512-6qLjt8ncestmSfEOeVf/kX5VhkinUsppybvkwn1X7wu+BjQ/GBSZYu7cytxdCvi5BaljCGIAr4rmfL5zVqdgyQ==
+
+"@prettier/parse-srcset@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@prettier/parse-srcset/-/parse-srcset-3.1.0.tgz#10a6785b84812b5ec506c16812fc2e3c6bb10b9e"
+  integrity sha512-FIRv2rZotO9NP/r66taYqD1zICpPiBbrECqjKV/xqNotqDxF7fLzzUeK+1RSRx9Tenk0DajR/GcRmTJ2qtHaKQ==
+
 "@rolldown/binding-android-arm-eabi@1.2.16":
   version "1.2.16"
   resolved "https://registry.yarnpkg.com/@rolldown/binding-android-arm-eabi/-/binding-android-arm-eabi-1.2.16.tgz#abc3e1d5aacd1983d32a490c3a8793770da3bd1a"
@@ -292,6 +302,11 @@ graceful-fs@^4.2.4:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.11.tgz#4183e4e8bf08bb6e05bbb2f7d2e0c8f712ca40e3"
   integrity sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==
 
+html-element-attributes@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/html-element-attributes/-/html-element-attributes-3.5.0.tgz#355a3890005201031046b79a55c9b04f696bb135"
+  integrity sha512-rU2BFhp0kQla9sqPBI46C+zbP6PFOtD7z6XNAJ6as+cGecCDXLx0W3aIs6XdPLmBBG/Fy1meRi/n65Exofz4Qw==
+
 jiti@^2.7.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-2.7.0.tgz#974228f2f4ca2bc21885a1797b45fea68e950c64"
@@ -416,10 +431,14 @@ postcss@^8.5.30:
     picocolors "^1.1.1"
     source-map-js "^1.2.2"
 
-prettier-plugin-blade@^2.1.19:
-  version "2.1.21"
-  resolved "https://registry.yarnpkg.com/prettier-plugin-blade/-/prettier-plugin-blade-2.1.21.tgz#cc191b8a09f09b8e05f85b26df410f7fe04cdef4"
-  integrity sha512-+BPBPvla/Ppr0MVrqMAO+FTwxpXUYo8zhQPIGC7psNuMbB24y84cGrJ4Uc02GHTQN0q8txeG4Y4MxyJWgOujyQ==
+prettier-plugin-blade@^3.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-blade/-/prettier-plugin-blade-3.3.3.tgz#c53b6e720174f2d192c63742422a3fe86115e7c1"
+  integrity sha512-ZjilA3czAFLSdGjM/F+T8jlXv20vSI7zb6ZqfVp3vX/+313mFZspuPz2DHN26xemjgOfW5mnyuOXjBvY399gsA==
+  dependencies:
+    "@prettier/html-tags" "^2.2.0"
+    "@prettier/parse-srcset" "^3.1.0"
+    html-element-attributes "^3.5.0"
 
 prettier-plugin-tailwindcss@^0.8.1:
   version "0.8.1"
