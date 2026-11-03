@@ -36,14 +36,6 @@ if [ $# -gt 0 ];then
             node \
             yarn "$@"
 
-    # Connect to the Postgres CLI
-    elif [ "$1" == "psql" ]; then
-        shift 1
-        $COMPOSE exec \
-            --user=postgres \
-            postgres \
-            psql "$@"
-
     # Else, pass through to docker compose
     else
         $COMPOSE "$@"
