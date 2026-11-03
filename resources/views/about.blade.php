@@ -43,7 +43,7 @@
         <div class="sm:flex sm:justify-around">
             <a
                 href="{{ route("home") }}"
-                class="mx-auto mb-4 flex items-center justify-center rounded bg-slate-200 p-2 text-center hover:bg-slate-300 sm:mb-0 sm:w-1/3 dark:bg-slate-600 dark:hover:bg-slate-500"
+                class="mx-auto mb-4 flex items-center justify-center rounded-sm bg-slate-200 p-2 text-center hover:bg-slate-300 sm:mb-0 sm:w-1/3 dark:bg-slate-600 dark:hover:bg-slate-500"
             >
                 <x-icons.arrow-left class="mr-2 hidden h-5 w-5 sm:block" />
                 Back to RSS Feeds
@@ -51,7 +51,7 @@
             <a
                 href="https://github.com/stagerightlabs/woso-rss-relay/"
                 target="_blank"
-                class="mx-auto flex items-center justify-center rounded bg-slate-200 p-2 text-center hover:bg-slate-300 sm:w-1/3 dark:bg-slate-600 dark:hover:bg-slate-500"
+                class="mx-auto flex items-center justify-center rounded-sm bg-slate-200 p-2 text-center hover:bg-slate-300 sm:w-1/3 dark:bg-slate-600 dark:hover:bg-slate-500"
             >
                 <x-icons.github class="mr-2 hidden h-5 w-5 sm:block" />
                 View on GitHub
