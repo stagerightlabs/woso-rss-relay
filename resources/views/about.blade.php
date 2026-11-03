@@ -4,10 +4,12 @@
     <x-card class="mx-2 my-8 md:mx-auto md:max-w-4xl">
         <header class="mb-4 sm:mb-0 sm:flex sm:justify-between">
             <h1 class="mb-4 text-xl">WoSo RSS Relay</h1>
-            <aside>
-                v{{ \Carbon\Carbon::createFromTimeString(config("relay.release_date"))->format("Ymd") }}
-                &bull; {{ config("relay.release_commit") }}
-            </aside>
+            @if (config("relay.release_date") && config("relay.release_commit"))
+                <aside>
+                    v{{ \Carbon\Carbon::createFromTimeString(config("relay.release_date"))->format("Ymd") }}
+                    &bull; {{ config("relay.release_commit") }}
+                </aside>
+            @endif
         </header>
         <p class="mb-4">
             There are a surprising number of websites in the Women's Football
